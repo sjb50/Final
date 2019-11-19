@@ -13,6 +13,17 @@ package library.century.edu;
  *         libraries collection.
  */
 public class BookCollection {
+	private Book books;
+	private Book_Node head;
+	private int size;
+
+	public Book getBooks() {
+		return books;
+	}
+
+	public void setBooks(Book books) {
+		this.books = books;
+	}
 
 	/**
 	 * @Specifications: add() method used to add a function to the libraries
@@ -22,9 +33,11 @@ public class BookCollection {
 	 * @Postcondition: book will be added to the array
 	 * @throws thorws NullPointerException
 	 */
-	public void add(Book book) {
-
+	public void add(Book books) {
+		Book_Node newNode = new Book_Node(books, head);
+		head = newNode;
 	}
+	
 
 	/**
 	 * @Specifications: removed(Book book)
@@ -33,9 +46,28 @@ public class BookCollection {
 	 * @Postcondition: book will be removed from the collection
 	 * @Throws: none.
 	 */
-	public boolean remove() {
-		return true;
+
+	public void remove(Book books) {
+        if (head != null){
+          if (books.equals(head.getData())){
+              head = head.getLink();
+          }
+          else {
+            Book_Node current = head.getLink();
+            Book_Node previous = head;
+            while(current != null){
+              if (current.getData().equals(books)) {
+                previous.setLink(current.getLink());
+                previous = current;
+                current = current.getLink();
+                return;
+              }
+            }
+          }
+        }
 	}
+
+	
 
 	/**
 	 * @Specifications: search the collection for a book
