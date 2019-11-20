@@ -83,7 +83,7 @@ public class BookCollection {
 	 * @Throws:
 	 */
 	public void ensureCapacity() {
-	Book[] expandedBooks = new Book[books.length * 2];
+	Book[] expandedBooks = new Book[books.length * 2 + 1];
       	for (int i = 0; i < books.length; i++) {
        	 expandedBooks[i] = books[i];
       }
