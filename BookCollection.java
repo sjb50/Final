@@ -13,12 +13,12 @@ package library.century.edu;
  *         libraries collection.
  */
 public class BookCollection {
-	private BookNode head;
 	private int size;
 	final int initialCapacity = 100;
 	private Book[] books;
 
 	BookCollection() {
+		size=0;
 		books = new Book[initialCapacity];
 	}
 
@@ -113,5 +113,13 @@ public void isEmpty() {
         	   }
 		}
         
+}
+
+public Book[] getBooks() {
+	return books;
+}
+
+public void setBooks(Book[] books) {
+	this.books = books;
 }
 }
