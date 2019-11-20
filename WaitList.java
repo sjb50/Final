@@ -51,14 +51,9 @@ public class WaitList {
 	}
 	
 	public static void main(String[] args){
-		Person sam = new Person("Sam");
-		Person sam1 = new Person("john");
-		Person sam2 = new Person("amir");
-		WaitList list = new WaitList();
-		list.enque(sam);
-		list.enque(sam1);
-		list.enque(sam2);
-		list.remove();
-		System.out.println(list.readQue());
+		Member sam = new Member("sam",0,0,0);
+		Book book = new Book("hello", "hi", "here", "Here");
+		sam.checkOut(book);
+		System.out.println(book.getWaitList().readQue());
 		}
 }
