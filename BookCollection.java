@@ -14,7 +14,7 @@ package library.century.edu;
  */
 public class BookCollection {
 	private Book books;
-	private Book_Node head;
+	private BookNode head;
 	private int size;
 
 	public Book getBooks() {
@@ -34,7 +34,7 @@ public class BookCollection {
 	 * @throws thorws NullPointerException
 	 */
 	public void add(Book books) {
-		Book_Node newNode = new Book_Node(books, head);
+		BookNode newNode = new BookNode(books, head);
 		head = newNode;
 	}
 	
@@ -53,8 +53,8 @@ public class BookCollection {
               head = head.getLink();
           }
           else {
-            Book_Node current = head.getLink();
-            Book_Node previous = head;
+            BookNode current = head.getLink();
+            BookNode previous = head;
             while(current != null){
               if (current.getData().equals(books)) {
                 previous.setLink(current.getLink());
@@ -103,3 +103,4 @@ public void isEmpty() {
 	
 }
 }
+

@@ -14,13 +14,13 @@ package library.century.edu;
  */
 public class BookNode {
   private Book data;
-	private Book_Node link;
+	private BookNode link;
 
 	/**
 	 * @param data
 	 * @param link
 	 */
-	public Book_Node(Book data, Book_Node link) {
+	public BookNode(Book data, BookNode link) {
 		super();
 		this.data = data;
 		this.link = link;
@@ -55,7 +55,7 @@ public class BookNode {
 	 * @throws: none
 	 * @return
 	 */
-	public Book_Node getLink() {
+	public BookNode getLink() {
 		return link;
 	}
 
@@ -66,7 +66,7 @@ public class BookNode {
 	 * @throws: none
 	 * @param link
 	 */
-	public void setLink(Book_Node link) {
+	public void setLink(BookNode link) {
 		this.link = link;
 	}
 

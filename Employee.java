@@ -12,12 +12,12 @@ package library.century.edu;
  * @author sjb19 Child class of parent used to store employee data.
  */
 
-public class Member{
+public class Employee{
 	private Person person;
 	private double fees;
 	private BookNode book;
 	
-	public Member(Person person, double fees, BookNode book) {
+	public Employee(Person person, double fees, BookNode book) {
 		super();
 		this.person = person;
 		this.fees = fees;
@@ -57,10 +57,10 @@ public class Member{
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Member)) {
+		if (!(obj instanceof Employee)) {
 			return false;
 		}
-		Member newMember = (Member)obj;
+		Employee newMember = (Employee)obj;
 		if (this.person.equals(newMember.person) && this.fees==newMember.fees 
 				&& this.book.equals(newMember.book)) {
 			return true;
