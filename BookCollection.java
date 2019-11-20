@@ -16,8 +16,11 @@ public class BookCollection {
 	private BookNode head;
 	private int size;
 	final int initialCapacity = 100;
-        private Book[] books;
+	private Book[] books;
 
+	BookCollection() {
+		books = new Book[initialCapacity];
+	}
 
 	/**
 	 * @Specifications: add() method used to add a function to the libraries
@@ -28,16 +31,22 @@ public class BookCollection {
 	 * @throws thorws NullPointerException
 	 */
 	public void add(Book book) {
- 		if (size >= books.length) {
-      		  expand();
-      }
-      	
-     	 books[size++] = book;
-    }
+		for (int count = 0; count < size; count++) {
+			if (books[count] == null) {
+				books[count] = book;
+				++size;
+				return;
+			}
+		}
+		if (size >= books.length) {
+			ensureCapacity();
+		}
+
+		books[size++] = book;
 	}
-	
 
 	/**
+	 * @return
 	 * @Specifications: removed(Book book)
 	 * @Param: Book book
 	 * @Precondition: book must be found or will return false.
@@ -45,30 +54,18 @@ public class BookCollection {
 	 * @Throws: none.
 	 */
 
-	public void remove(Book books) {
-       	int indexOfBooks = -1;
-     	for (int i = 0; i < size; i++) {
-        if (books.equalsIgnoreCase(Book[i].getAuthor() + Book[i].getTitle()) {
-          indexOfBooks = i;
-          break;
-        }
-      }
-      
-       	if (indexOfBooks > -1) {
-        // Remove from array
-        for (int i = indexOfBooks + 1; i < size; i++) {
-         books [i - 1] = books[i];
-        }
-        
-        books[size- 1] = null;
-        size--;
-        return true;
-      }
-        return false;
-    }
-}
+	public boolean remove(Book book) {
+		int indexOfBooks = -1;
+		for (int i = 0; i < size; i++) {
+			if (book.equals(books[i])) {
+				books[i] = null;
+				--size;
+				return true;
+			}
+		}
+		return false;
 
-	
+	}
 
 	/**
 	 * @Specifications: search the collection for a book
@@ -90,13 +87,12 @@ public class BookCollection {
 	 * @Throws:
 	 */
 	public void ensureCapacity() {
-	Book[] expandedBooks = new Book[books.length * 2 + 1];
-      	for (int i = 0; i < books.length; i++) {
-       	 expandedBooks[i] = books[i];
-      }
-      
-      	books = expandedbooks;
-    }
+		Book[] expandedBooks = new Book[books.length * 2 + 1];
+		for (int i = 0; i < books.length; i++) {
+			expandedBooks[i] = books[i];
+		}
+
+		books = expandedBooks;
 	}
 
 /**
@@ -118,4 +114,4 @@ public void isEmpty() {
 		}
         
 }
-
+}
