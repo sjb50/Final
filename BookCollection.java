@@ -27,9 +27,13 @@ public class BookCollection {
 	 * @Postcondition: book will be added to the array
 	 * @throws thorws NullPointerException
 	 */
-	public void add(Book books) {
-		BookNode newNode = new BookNode(books, head);
-		head = newNode;
+	public void add(Book book) {
+ 		if (size >= books.length) {
+      		  expand();
+      }
+      	
+     	 books[size++] = book;
+    }
 	}
 	
 
@@ -42,24 +46,27 @@ public class BookCollection {
 	 */
 
 	public void remove(Book books) {
-        if (head != null){
-          if (books.equals(head.getData())){
-              head = head.getLink();
-          }
-          else {
-            BookNode current = head.getLink();
-            BookNode previous = head;
-            while(current != null){
-              if (current.getData().equals(books)) {
-                previous.setLink(current.getLink());
-                previous = current;
-                current = current.getLink();
-                return;
-              }
-            }
-          }
+       	int indexOfBooks = -1;
+     	for (int i = 0; i < size; i++) {
+        if (books.equalsIgnoreCase(Book[i].getAuthor() + Book[i].getTitle()) {
+          indexOfBooks = i;
+          break;
         }
-	}
+      }
+      
+       	if (indexOfBooks > -1) {
+        // Remove from array
+        for (int i = indexOfBooks + 1; i < size; i++) {
+         books [i - 1] = books[i];
+        }
+        
+        books[size- 1] = null;
+        size--;
+        return true;
+      }
+        return false;
+    }
+}
 
 	
 
