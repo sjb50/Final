@@ -1,19 +1,21 @@
-
+package library.century.edu;
 public class Book implements Cloneable {
 
 	private String author;
 	private String title;
-	private image picture;
+	private String picture;
 	private String book;
 	private boolean checkOut;
-	
-	public Book(String author, String title, image picture, String book, boolean checkOut) {
+	private WaitList waitList;
+
+	public Book(String author, String title, String picture, String book) {
 		super();
 		this.author = author;
 		this.title = title;
 		this.picture = picture;
 		this.book = book;
-		this.checkOut = checkOut;
+		this.checkOut = false;
+		waitList=new WaitList();
 	}
 
 	public String getAuthor() {
@@ -32,11 +34,11 @@ public class Book implements Cloneable {
 		this.title = title;
 	}
 
-	public image getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(image picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 
@@ -47,6 +49,12 @@ public class Book implements Cloneable {
 	public void setBook(String book) {
 		this.book = book;
 	}
+	
+
+	public WaitList getWaitList() {
+		return waitList;
+	}
+
 
 	public boolean isCheckOut() {
 		return checkOut;
@@ -55,7 +63,6 @@ public class Book implements Cloneable {
 	public void setCheckOut(boolean checkOut) {
 		this.checkOut = checkOut;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,7 +97,6 @@ public class Book implements Cloneable {
 			return false;
 		return true;
 	}
-	
 
 	@Override
 	protected Book clone() throws CloneNotSupportedException {
@@ -102,7 +108,5 @@ public class Book implements Cloneable {
 		return "Book [author=" + author + ", title=" + title + ", picture=" + picture + ", book=" + book + ", checkOut="
 				+ checkOut + "]";
 	}
-	
-	
-	
+
 }

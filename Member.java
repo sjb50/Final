@@ -1,4 +1,5 @@
 /**
+here
  *@Specifications:
  *@Param:
  *@Precondition:
@@ -15,6 +16,17 @@ package library.century.edu;
 public class Member extends Person {
 
 	/**
+	 * @param name
+	 * @param contact
+	 * @param member
+	 * @param fees
+	 */
+	public Member(String name, int contact, int member, double fees) {
+		super(name, contact, member, fees);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @Specifications: CheckOut() checks out a book and adds it to the members
 	 *                  linked List.
 	 * @Param: Book book
@@ -22,7 +34,9 @@ public class Member extends Person {
 	 * @Postcondition: book will be added to the members Linked list.
 	 */
 	public void checkOut(Book book) {
-
+		if (book.isCheckOut()==true) {
+			book.getWaitList().enque(Member.this);
+		}
 	}
 
 	/**

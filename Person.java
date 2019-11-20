@@ -1,11 +1,4 @@
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
+
 package library.century.edu;
 
 /**
@@ -81,4 +74,3 @@ public class Person {
 		return false;
 	}
 }
-
