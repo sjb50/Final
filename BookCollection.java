@@ -107,15 +107,15 @@ public class BookCollection {
  *@Throws:
  */
 public void isEmpty() {
-	Book_Node current = head;
-        if (current == null) {
-            System.out.println("No checkout books");
+	 if (books == null) {
+            System.out.println("There are no books.");
             return;
         }
-        while (current != null) {
-            System.out.println(current.getData());
-            current = current.getLink();
-        }
-}
+           for (int i = 0; i < books.length; i++) {
+        	   if (books != null) {
+        		   System.out.println( books[i]);
+        	   }
+		}
+        
 }
 
