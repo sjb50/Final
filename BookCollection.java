@@ -18,13 +18,6 @@ public class BookCollection {
 	final int initialCapacity = 100;
         private Book[] books;
 
-	public Book getBooks() {
-		return books;
-	}
-
-	public void setBooks(Book books) {
-		this.books = books;
-	}
 
 	/**
 	 * @Specifications: add() method used to add a function to the libraries
