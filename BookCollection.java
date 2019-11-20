@@ -13,9 +13,10 @@ package library.century.edu;
  *         libraries collection.
  */
 public class BookCollection {
-	private Book books;
 	private BookNode head;
 	private int size;
+	final int initialCapacity = 100;
+        private Book[] books;
 
 	public Book getBooks() {
 		return books;
@@ -89,7 +90,13 @@ public class BookCollection {
 	 * @Throws:
 	 */
 	public void ensureCapacity() {
-
+	Book[] expandedBooks = new Book[books.length * 2];
+      	for (int i = 0; i < books.length; i++) {
+       	 expandedBooks[i] = books[i];
+      }
+      
+      	books = expandedbooks;
+    }
 	}
 
 /**
@@ -100,7 +107,15 @@ public class BookCollection {
  *@Throws:
  */
 public void isEmpty() {
-	
+	Book_Node current = head;
+        if (current == null) {
+            System.out.println("No checkout books");
+            return;
+        }
+        while (current != null) {
+            System.out.println(current.getData());
+            current = current.getLink();
+        }
 }
 }
 
