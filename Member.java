@@ -1,76 +1,60 @@
-/**
-here
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
-package library.century.edu;
 
-/**
- * @author sjb19 Defines what a member is. used to store their
- *         name,id,email,ect. super class of person
- */
-public class Member extends Person {
-
-	/**
-	 * @param name
-	 * @param contact
-	 * @param member
-	 * @param fees
-	 */
-	public Member(String name, int contact, int member, double fees) {
-		super(name, contact, member, fees);
-		// TODO Auto-generated constructor stub
+public class Member{
+	private Person person;
+	private double fees;
+	private BookNode book;
+	
+	public Member(Person person, double fees, BookNode book) {
+		super();
+		this.person = person;
+		this.fees = fees;
+		this.book = book;
 	}
 
-	/**
-	 * @Specifications: CheckOut() checks out a book and adds it to the members
-	 *                  linked List.
-	 * @Param: Book book
-	 * @Precondition: none
-	 * @Postcondition: book will be added to the members Linked list.
-	 */
-	public void checkOut(Book book) {
-		if (book.isCheckOut()==true) {
-			book.getWaitList().enque(Member.this);
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public double getFees() {
+		return fees;
+	}
+
+	public void setFees(double fees) {
+		this.fees = fees;
+	}
+
+	public BookNode getBook() {
+		return book;
+	}
+
+	public void setBook(BookNode book) {
+		this.book = book;
+	}
+
+	@Override
+	public String toString() {
+		return "Member [person=" + person + ", fees=" + fees + ", book=" + book + "]";
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
 		}
+		if (!(obj instanceof Member)) {
+			return false;
+		}
+		Member newMember = (Member)obj;
+		if (this.person.equals(newMember.person) && this.fees==newMember.fees 
+				&& this.book.equals(newMember.book)) {
+			return true;
+		}
+		return false;
 	}
+	
+	
 
-	/**
-	 * @Specifications: returnBook() returns a book to become availably in the
-	 *                  collection.
-	 * @Param: Book book
-	 * @Precondition: book must be in the memebers nodes.
-	 * @Postcondition: book will be removed from the customer linked list of books
-	 *                 and returned to the collection.
-	 * @Throws:
-	 */
-	public void returnBook(Book book) {
-
-	}
-
-	/**
-	 * @Specifications:Charges a customer for any late books
-	 * @Param:double fee
-	 * @Precondition:
-	 * @Postcondition: the amount the member owes will be increased
-	 * @Throws:
-	 */
-	public void charge(double fee) {
-
-	}
-
-	/**
-	 * @Specifications: allows the member to pay their fines.
-	 * @Param: double payment
-	 * @Precondition: payment cannot be more than they owe.
-	 * @Postcondition: payment will be taken and reduced from their fines.
-	 * @Throws:
-	 */
-	public void payFee(double payment) {
-
-	}
 }
