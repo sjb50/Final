@@ -1,42 +1,25 @@
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
-package library.century.edu;
 
-/**
- *test
- * @author sjb19 Holds a collection of members or employees of the library.
- */
-public class PersonCollection {
+public class PersonCollection implements Cloneable{
+	private Member[] member;
+	private int manyMembers;
 
 	public PersonCollection() {
-
+		final int InitialCapacity = 20;
+		manyMembers = 0;
+		member = new Member[InitialCapacity];
 	}
-
-	/**
-	 * @Specifications: adds a member to the libraries list of members
-	 * @Param: Member member
-	 * @Precondition: array must be not be null.
-	 * @Postcondition: memeber will be added to the array
-	 * @Throws:
-	 */
-	public void add(Person person) {
-
+	
+	public PersonCollection(int initialCapacity) {
+		if (initialCapacity < 0) {
+			throw new IllegalArgumentException("InitialCapacity is negative");
+		}
+		else {
+			manyMembers = 0;
+			member = new Member[initialCapacity];
+		}
 	}
-
-	/**
-	 * @Specifications: Membere will be removed from the collection
-	 * @Param:Member member
-	 * @Precondition:
-	 * @Postcondition: member will be added to the array.
-	 * @Throws:
-	 */
-	public boolean remove(Member member) {
-		return false;
+	
+	public void ensureCapacity() {
+		
 	}
 }

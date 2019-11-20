@@ -1,12 +1,4 @@
 
-package library.century.edu;
-
-/**
- * Parent class to both member and employee.
- * used to store similar data.
- *
- */
-
 public class Person {
 	private String name;
 	private int contact;

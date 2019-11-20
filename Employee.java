@@ -1,70 +1,50 @@
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
-package library.century.edu;
 
-/**
- * @author sjb19 Child class of parent used to store employee data.
- */
-
-public class Employee{
+public class Employee {
 	private Person person;
-	private double fees;
-	private BookNode book;
+	private int id;
+	private String password;
 	
-	public Employee(Person person, double fees, BookNode book) {
+	public Employee(Person person, int id, String password) {
 		super();
 		this.person = person;
-		this.fees = fees;
-		this.book = book;
+		this.id = id;
+		this.password = password;
 	}
-
 	public Person getPerson() {
 		return person;
 	}
-
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-
-	public double getFees() {
-		return fees;
+	public int getId() {
+		return id;
 	}
-
-	public void setFees(double fees) {
-		this.fees = fees;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public BookNode getBook() {
-		return book;
+	public String getPassword() {
+		return password;
 	}
-
-	public void setBook(BookNode book) {
-		this.book = book;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [person=" + person + ", fees=" + fees + ", book=" + book + "]";
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Employee)) {
+		if(!(obj instanceof Employee)) {
 			return false;
 		}
-		Employee newMember = (Employee)obj;
-		if (this.person.equals(newMember.person) && this.fees==newMember.fees 
-				&& this.book.equals(newMember.book)) {
+		Employee newEmployee = (Employee) obj;
+		if (this.password.equals(newEmployee.password)&& this.id == newEmployee.id
+				&& this.person.equals(newEmployee.person)) {
 			return true;
 		}
 		return false;
 	}
-}
+	@Override
+	public String toString() {
+		return "Employee [person=" + person + ", id=" + id + ", password=" + password + "]";
+	}
+ }
