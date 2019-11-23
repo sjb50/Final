@@ -1,21 +1,37 @@
-
-public class Employee {
-	private Person person;
+/**
+ *@Specifications:
+ *@Param:
+ *@Precondition:
+ *@Postcondition:
+ *@Exceptions:
+ *@Throws:
+ */
+public class Employee extends Person{
 	private int id;
 	private String password;
 	
-	public Employee(Person person, int id, String password) {
-		super();
-		this.person = person;
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
+	public Employee(String name, int contact, int member,double fees, int id, String password) {
+		super(name, contact, member, fees);
 		this.id = id;
 		this.password = password;
 	}
-	public Person getPerson() {
-		return person;
-	}
-	public void setPerson(Person person) {
-		this.person = person;
-	}
+	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	public int getId() {
 		return id;
 	}
@@ -29,6 +45,14 @@ public class Employee {
 		this.password = password;
 	}
 	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -37,14 +61,22 @@ public class Employee {
 			return false;
 		}
 		Employee newEmployee = (Employee) obj;
-		if (this.password.equals(newEmployee.password)&& this.id == newEmployee.id
-				&& this.person.equals(newEmployee.person)) {
+		if (this.password.equals(newEmployee.password)&& this.id == newEmployee.id) {
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	@Override
 	public String toString() {
-		return "Employee [person=" + person + ", id=" + id + ", password=" + password + "]";
+		return "Employee [id=" + id + ", password=" + password + "]";
 	}
  }

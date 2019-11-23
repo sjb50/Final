@@ -1,17 +1,39 @@
-
+/**
+ *@Specifications:
+ *@Param:
+ *@Precondition:
+ *@Postcondition:
+ *@Exceptions:
+ *@Throws:
+ */
 public class Person {
 	private String name;
 	private int contact;
-	private int member;
+	private int memberId;
 	private double fees;
 	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	public Person(String name, int contact, int member, double fees) {
 		this.name = name;
 		this.contact = contact;
-		this.member = member;
+		this.memberId = member;
 		this.fees = fees;
 	}
-	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	public String getName() {
 		return name;
 	}
@@ -24,11 +46,11 @@ public class Person {
 	public void setContact(int contact) {
 		this.contact = contact;
 	}
-	public int getMember() {
-		return member;
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setMember(int member) {
-		this.member = member;
+	public void setMemberId(int member) {
+		this.memberId = member;
 	}
 	public double getFees() {
 		return fees;
@@ -37,10 +59,26 @@ public class Person {
 		this.fees = fees;
 	}
 
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	public String toString() {
-		return "Person [name=" + name + ", contact=" + contact + ", member=" + member + ", fees=" + fees + "]";
+		return "Person [name=" + name + ", contact=" + contact + ", member=" + memberId + ", fees=" + fees + "]";
 	}
 	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	protected Object clone() {
 		Person newPerson = null;
 		try {
@@ -51,6 +89,14 @@ public class Person {
 		return newPerson;
 	}
 	
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Exceptions:
+	 *@Throws:
+	 */
 	public boolean equals(Object obj) {
 		if(obj == null) {
 			return false;
@@ -60,7 +106,7 @@ public class Person {
 		}
 		Person newPerson = (Person) obj;
 		if (this.name.equals(newPerson.name) && this.contact == newPerson.contact
-				&& this.member == newPerson.member && this.fees == newPerson.fees) {
+				&& this.memberId == newPerson.memberId && this.fees == newPerson.fees) {
 			return true;
 		}
 		return false;
