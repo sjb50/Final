@@ -131,7 +131,7 @@ public class Member extends Person {
 	 */
 	@Override
 	public String toString() {
-		return "Member [fees=" + fees + ", book=" + books + "]";
+		return super.toString()+"Member [fees=" + fees+"]";
 	}
 
 	/**
