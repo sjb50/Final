@@ -29,15 +29,13 @@ public class TestDriver {
 		Book book2 = new Book("goodbye", "goodbye", "goodbye", "goodbye");
 		Book book3 = new Book("go", "gye", "gbye", "gye");
 		BookCollection bookCollection = new BookCollection();
-		PersonCollection peopleCollection = new PersonCollection();
-		peopleCollection.add(matt);
-		peopleCollection.add(sam);
-		collection.add(matt);
+		bookCollection.add(book1);
+		bookCollection.add(book2);
+		bookCollection.add(book3);
+		sam.checkOut(book1);
+		System.out.println(book1.isCheckOut());
 		matt.checkOut(book1);
-		matt.checkOut(book2);
-		matt.returnBook(book2);
-		matt.checkOut(book3);
-		System.out.println(peopleCollection.readAll());
-		System.out.println(matt.readCheckedOut());
+		System.out.println(sam+"\n"+sam.readCheckedOut());
+		System.out.println(book1+"\n"+book1.getWaitList().readQue());
 	}
 }

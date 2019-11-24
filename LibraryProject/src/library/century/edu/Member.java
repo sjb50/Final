@@ -65,6 +65,7 @@ public class Member extends Person {
 		if (book.isCheckOut() == true) {
 			book.getWaitList().enque(Member.this);
 		} else {
+			book.setCheckOut(true);
 			books.add(book);
 		}
 	}
@@ -80,6 +81,7 @@ public class Member extends Person {
 	 */
 	public boolean returnBook(Book book) {
 		if (books.remove(book)) {
+			book.setCheckOut(false);
 			return true;
 		}
 		else {
