@@ -22,16 +22,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+import javax.swing.JScrollBar;
 
 public class HomeScreen extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField search_textField;
-	private JButton button;
+	private JButton btnCheckOut;
 
-	/**
-	 * Launch the application.
-	 */
 
 
 	/**
@@ -113,10 +111,10 @@ public class HomeScreen extends JFrame {
 		memberSignup_btn.setBounds(332, 11, 203, 33);
 		panel.add(memberSignup_btn);
 		
-		button = new JButton("Add Book");
-		button.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		button.setBounds(545, 11, 176, 33);
-		panel.add(button);
+		btnCheckOut = new JButton("Check Out");
+		btnCheckOut.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnCheckOut.setBounds(545, 11, 176, 33);
+		panel.add(btnCheckOut);
 		
 		JButton btnNewButton = new JButton("Search ");
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 15));

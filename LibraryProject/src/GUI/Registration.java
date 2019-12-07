@@ -19,12 +19,13 @@ public class Registration extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField password_textField;
 	private JTextField textField_3;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. test
 	 */
-	
+
 
 	/**
 	 * Create the frame.
@@ -58,9 +59,14 @@ public class Registration extends JFrame {
 		lblLastName.setBounds(47, 161, 95, 26);
 		contentPane.add(lblLastName);
 		
-		JLabel lblContact = new JLabel("Phone #:");
+		JLabel password_lbl = new JLabel("Password");
+		password_lbl.setFont(new Font("Arial", Font.BOLD, 15));
+		password_lbl.setBounds(47, 197, 95, 26);
+		contentPane.add(password_lbl);
+		
+		JLabel lblContact = new JLabel("Contact:");
 		lblContact.setFont(new Font("Arial", Font.BOLD, 15));
-		lblContact.setBounds(47, 198, 95, 26);
+		lblContact.setBounds(47, 234, 95, 26);
 		contentPane.add(lblContact);
 		
 		JButton btnSubmit = new JButton("Submit ");
@@ -81,20 +87,26 @@ public class Registration extends JFrame {
 		textField_1.setBounds(148, 161, 181, 26);
 		contentPane.add(textField_1);
 		
+		password_textField = new JTextField();
+		password_textField.setBackground(new Color(192, 192, 192));
+		password_textField.setForeground(new Color(192, 192, 192));
+		password_textField.setColumns(10);
+		password_textField.setBounds(148, 201, 181, 26);
+		contentPane.add(password_textField);
+		
 		textField_3 = new JTextField();
 		textField_3.setBackground(new Color(192, 192, 192));
 		textField_3.setColumns(10);
-		textField_3.setBounds(148, 198, 181, 26);
+		textField_3.setBounds(148, 238, 181, 26);
 		contentPane.add(textField_3);
 		
 	
 		JLabel lblBackImage = new JLabel();
 		lblBackImage.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblBackImage.setBackground(new Color(192, 192, 192));
-		Image img = new ImageIcon(this.getClass().getResource("/image/large-librarysymbol.jpg")).getImage();
-		lblBackImage.setIcon(new ImageIcon (img));
+		lblBackImage.setBackground(new Color(153, 204, 255));
 		lblBackImage.setBounds(0, 0, 408, 421);
 		contentPane.add(lblBackImage);
 	
 	}
+
 }
