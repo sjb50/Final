@@ -70,23 +70,30 @@ public class Login extends JFrame {
 		contentPane.add(lblPassword);
 		
 		JButton btnSignIn = new JButton("Sign in");
-		btnSignIn.setBackground(new Color(153, 204, 255));
+		btnSignIn.setBackground(Color.WHITE);
 		btnSignIn.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username=userId_textField.getText();
 				String password = password_textField.getText();
 				System.out.println(username+password);
-				Registration passed = new Registration(); 
-				passed.setVisible(true);
+				HomeScreen home = new HomeScreen(); 
+				home.setVisible(true);
 			}
 		});
 		btnSignIn.setBounds(406, 249, 112, 36);
 		contentPane.add(btnSignIn);
 		
 		JButton btnSignUp = new JButton("New Employee");
+		btnSignUp.setBackground(Color.WHITE);
 		btnSignUp.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnSignUp.setBounds(406, 11, 153, 36);
+		btnSignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Registration empSignUp = new Registration(); 
+				empSignUp.setVisible(true);
+			}
+		});
 		contentPane.add(btnSignUp);
 		
 		password_textField = new JTextField();

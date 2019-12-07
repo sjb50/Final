@@ -19,7 +19,6 @@ public class Registration extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 
 	/**
@@ -59,14 +58,9 @@ public class Registration extends JFrame {
 		lblLastName.setBounds(47, 161, 95, 26);
 		contentPane.add(lblLastName);
 		
-		JLabel lblMemberid = new JLabel("MemberID");
-		lblMemberid.setFont(new Font("Arial", Font.BOLD, 15));
-		lblMemberid.setBounds(47, 197, 95, 26);
-		contentPane.add(lblMemberid);
-		
-		JLabel lblContact = new JLabel("Contact:");
+		JLabel lblContact = new JLabel("Phone #:");
 		lblContact.setFont(new Font("Arial", Font.BOLD, 15));
-		lblContact.setBounds(47, 234, 95, 26);
+		lblContact.setBounds(47, 198, 95, 26);
 		contentPane.add(lblContact);
 		
 		JButton btnSubmit = new JButton("Submit ");
@@ -87,17 +81,10 @@ public class Registration extends JFrame {
 		textField_1.setBounds(148, 161, 181, 26);
 		contentPane.add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setBackground(new Color(192, 192, 192));
-		textField_2.setForeground(new Color(192, 192, 192));
-		textField_2.setColumns(10);
-		textField_2.setBounds(148, 201, 181, 26);
-		contentPane.add(textField_2);
-		
 		textField_3 = new JTextField();
 		textField_3.setBackground(new Color(192, 192, 192));
 		textField_3.setColumns(10);
-		textField_3.setBounds(148, 238, 181, 26);
+		textField_3.setBounds(148, 198, 181, 26);
 		contentPane.add(textField_3);
 		
 	
@@ -110,5 +97,4 @@ public class Registration extends JFrame {
 		contentPane.add(lblBackImage);
 	
 	}
-
 }
