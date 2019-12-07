@@ -1,3 +1,8 @@
-/image/
-/img/
+/.classpath
+/.project
+/Books/
 /GUI/
+/Person/
+/helpers/
+/image/
+/library/

@@ -12,7 +12,7 @@ import Books.Book;
 
 /**
  * @author sjb19 BookNode class store books in a linked list that members have
- *         currently checked out.
+ *         currently checked out. HERE
  */
 public class BookNode {
   private Book data;
