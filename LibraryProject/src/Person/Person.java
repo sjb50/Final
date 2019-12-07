@@ -1,5 +1,5 @@
 
-package library.century.edu;
+package Person;
 
 /**
  * Parent class to both member and employee.

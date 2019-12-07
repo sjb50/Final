@@ -6,7 +6,7 @@
  *@Exceptions:
  *@Throws:
  */
-package library.century.edu;
+package Person;
 
 /**
  * @author sjb19 Child class of parent used to store employee data.

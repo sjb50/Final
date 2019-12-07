@@ -6,7 +6,9 @@
  *@Exceptions:
  *@Throws:
  */
-package library.century.edu;
+package Person;
+
+import Books.Book;
 
 /**
  * @author sjb19 BookNode class store books in a linked list that members have

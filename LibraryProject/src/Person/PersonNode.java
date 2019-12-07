@@ -6,7 +6,7 @@
  *@Exceptions:
  *@Throws:
  */
-package library.century.edu;
+package Person;
 
 /**
  * @author sjb19

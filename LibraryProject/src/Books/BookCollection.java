@@ -6,7 +6,7 @@
  *@Exceptions:
  *@Throws:
  */
-package library.century.edu;
+package Books;
 
 /**
  * @author sjb19 Class Designed to hold a collection of books that are in a
@@ -17,7 +17,7 @@ public class BookCollection {
 	final int initialCapacity = 100;
 	private Book[] books;
 
-	BookCollection() {
+	public BookCollection() {
 		size=0;
 		books = new Book[initialCapacity];
 	}

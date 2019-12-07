@@ -1,4 +1,5 @@
-package library.century.edu;
+package Books;
+import Person.WaitList;
 public class Book implements Cloneable {
 
 	private String author;
