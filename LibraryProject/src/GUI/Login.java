@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Login extends JFrame {
 
@@ -48,6 +49,7 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 585, 433);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -68,6 +70,7 @@ public class Login extends JFrame {
 		contentPane.add(lblPassword);
 		
 		JButton btnSignIn = new JButton("Sign in");
+		btnSignIn.setBackground(new Color(153, 204, 255));
 		btnSignIn.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,12 +81,12 @@ public class Login extends JFrame {
 				passed.setVisible(true);
 			}
 		});
-		btnSignIn.setBounds(301, 264, 112, 36);
+		btnSignIn.setBounds(406, 249, 112, 36);
 		contentPane.add(btnSignIn);
 		
-		JButton btnSignUp = new JButton("Sign up ");
+		JButton btnSignUp = new JButton("New Employee");
 		btnSignUp.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnSignUp.setBounds(447, 264, 112, 36);
+		btnSignUp.setBounds(406, 11, 153, 36);
 		contentPane.add(btnSignUp);
 		
 		password_textField = new JTextField();
