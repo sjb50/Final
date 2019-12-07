@@ -96,7 +96,7 @@ public class Member extends Person {
 	public void charge(BookCollection collection, Book book) {
 		if (collection.remove(book)) {
 			books.remove(book);
-			fees = 10;
+			fees += 10;
 		}
 	}
 
