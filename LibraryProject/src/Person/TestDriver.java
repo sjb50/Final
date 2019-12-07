@@ -7,7 +7,6 @@
 	 *@Postcondition:
 	 *@Throws:
 	 */
-<<<<<<< HEAD
 	/**public static void main(String[] args) {
 =======
 	public static void main(String[] args) {
@@ -33,6 +32,4 @@
 	}
 <<<<<<< HEAD
 }**/
-=======
 }
->>>>>>> branch 'master' of https://github.com/sjb50/Final.git
