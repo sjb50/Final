@@ -1,17 +1,3 @@
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
-package Person;
-
-/**
- * @author sjb19
- *
- */
 public class PersonNode {
 	Person person;
 	PersonNode link;

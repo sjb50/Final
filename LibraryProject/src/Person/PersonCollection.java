@@ -1,13 +1,3 @@
-package Person;
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
-
 public class PersonCollection implements Cloneable{
 	private Member[] members;
 	private int manyMembers;
@@ -168,7 +158,7 @@ public class PersonCollection implements Cloneable{
 	public boolean searchByMemberId(int id) {
 		try {
 			for (int i = 0; i < members.length; i++) {
-				if (members[i].getMemberId() == id) {
+				if (members[i].getId() == id) {
 					System.out.println("Here is the member with this memberId");
 					System.out.println(members[i]);
 					return true;

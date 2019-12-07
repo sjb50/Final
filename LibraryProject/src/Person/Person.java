@@ -1,22 +1,15 @@
-
-package Person;
-
-/**
- * Parent class to both member and employee.
- * used to store similar data.
- *test
- */
-
 public class Person {
 	private String name;
 	private int contact;
+	private static int idCounter=1000;
+	private int Id;
 	
 	public Person(String name, int contact) {
 		this.name = name;
 		this.contact = contact;
+		Id = idCounter;
+		idCounter += 10;
 	}
-	
-	
 	
 	public String getName() {
 		return name;
@@ -29,10 +22,18 @@ public class Person {
 	}
 	public void setContact(int contact) {
 		this.contact = contact;
+	}
 	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
 
 	public String toString() {
-		return "Person [name=" + name + ", contact=" + contact + ", member=" + member + ", fees=" + fees + "]";
+		return "Person [name=" + name + ", contact=" + contact + "]";
 	}
 	
 	protected Object clone() {
@@ -53,8 +54,7 @@ public class Person {
 			return false;
 		}
 		Person newPerson = (Person) obj;
-		if (this.name.equals(newPerson.name) && this.contact == newPerson.contact
-				&& this.member == newPerson.member && this.fees == newPerson.fees) {
+		if (this.name.equals(newPerson.name) && this.contact == newPerson.contact && this.Id == newPerson.Id) {
 			return true;
 		}
 		return false;
