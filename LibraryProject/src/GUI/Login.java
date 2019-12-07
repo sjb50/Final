@@ -74,6 +74,8 @@ public class Login extends JFrame {
 				String username=userId_textField.getText();
 				String password = password_textField.getText();
 				System.out.println(username+password);
+				Registration passed = new Registration(); 
+				passed.setVisible(true);
 			}
 		});
 		btnSignIn.setBounds(301, 264, 112, 36);
