@@ -10,15 +10,13 @@ package Person;
 public class Person {
 	private String name;
 	private int contact;
-	private int member;
-	private double fees;
 	
-	public Person(String name, int contact, int member, double fees) {
+	public Person(String name, int contact) {
 		this.name = name;
 		this.contact = contact;
-		this.member = member;
-		this.fees = fees;
 	}
+	
+	
 	
 	public String getName() {
 		return name;
@@ -31,19 +29,7 @@ public class Person {
 	}
 	public void setContact(int contact) {
 		this.contact = contact;
-	}
-	public int getMember() {
-		return member;
-	}
-	public void setMember(int member) {
-		this.member = member;
-	}
-	public double getFees() {
-		return fees;
-	}
-	public void setFees(double fees) {
-		this.fees = fees;
-	}
+	
 
 	public String toString() {
 		return "Person [name=" + name + ", contact=" + contact + ", member=" + member + ", fees=" + fees + "]";

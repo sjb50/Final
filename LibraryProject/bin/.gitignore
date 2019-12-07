@@ -1,8 +1,3 @@
-/.classpath
-/.project
-/Books/
+/module-info.class
 /GUI/
 /Person/
-/helpers/
-/image/
-/library/

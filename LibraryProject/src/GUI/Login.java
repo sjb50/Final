@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Person.Member;
+import Person.Person;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -67,6 +71,9 @@ public class Login extends JFrame {
 		btnSignIn.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String username=userId_textField.getText();
+				String password = password_textField.getText();
+				System.out.println(username+password);
 			}
 		});
 		btnSignIn.setBounds(301, 264, 112, 36);

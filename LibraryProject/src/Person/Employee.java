@@ -12,59 +12,43 @@ package Person;
  * @author sjb19 Child class of parent used to store employee data.
  */
 
-public class Employee{
-	private Person person;
-	private double fees;
-	private BookNode book;
-	
-	public Employee(Person person, double fees, BookNode book) {
-		super();
-		this.person = person;
-		this.fees = fees;
-		this.book = book;
-	}
+public class Employee extends Person {
+	private String password;
 
-	public Person getPerson() {
-		return person;
-	}
+	public Employee(String name, int contact, String password) {
+		super(name, contact);
+		this.password = password;
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	public double getFees() {
-		return fees;
-	}
-
-	public void setFees(double fees) {
-		this.fees = fees;
-	}
-
-	public BookNode getBook() {
-		return book;
-	}
-
-	public void setBook(BookNode book) {
-		this.book = book;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [person=" + person + ", fees=" + fees + ", book=" + book + "]";
+		return "name;" + super.getName();
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Employee)) {
-			return false;
-		}
-		Employee newMember = (Employee)obj;
-		if (this.person.equals(newMember.person) && this.fees==newMember.fees 
-				&& this.book.equals(newMember.book)) {
+		if (this == obj)
 			return true;
-		}
-		return false;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		return true;
 	}
+
 }

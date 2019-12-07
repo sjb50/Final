@@ -168,7 +168,7 @@ public class PersonCollection implements Cloneable{
 	public boolean searchByMemberId(int id) {
 		try {
 			for (int i = 0; i < members.length; i++) {
-				if (members[i].getMember() == id) {
+				if (members[i].getMemberId() == id) {
 					System.out.println("Here is the member with this memberId");
 					System.out.println(members[i]);
 					return true;

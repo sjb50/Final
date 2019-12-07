@@ -13,6 +13,7 @@ import Books.Book;
 public class Member extends Person {
 	private double fees;
 	private CheckedOutBooks books;
+	private int memberId;
 
 	/**
 	 * @Specifications:
@@ -22,13 +23,24 @@ public class Member extends Person {
 	 * @Exceptions:
 	 * @Throws:
 	 */
-	public Member(String name, int contact, int member, double fees, CheckedOutBooks books) {
-		super(name, contact, member, fees);
+	public Member(String name, int contact,int memberId, double fees, CheckedOutBooks books) {
+		super(name, contact);
+		this.fees=fees;
 		this.books = books;
+		this.memberId=memberId;
+	}
+
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 
 	public Member(String name, int contact, int member, double fees) {
-		super(name, contact, member, fees);
+		super(name, contact);
+		this.fees=fees;
 		books = new CheckedOutBooks();
 	}
 
