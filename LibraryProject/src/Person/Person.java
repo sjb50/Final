@@ -1,5 +1,8 @@
 package Person;
-public class Person {
+
+import java.io.Serializable;
+
+public class Person implements Serializable {
 	private String name;
 	private String contact;
 	private static int idCounter=1000;
@@ -34,7 +37,7 @@ public class Person {
 	}
 
 	public String toString() {
-		return "Person [name=" + name + ", contact=" + contact + "]";
+		return "Person:" + name + ",\ncontact:" + contact + "\nId:"+Id;
 	}
 	
 	protected Object clone() {

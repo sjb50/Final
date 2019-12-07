@@ -1,5 +1,8 @@
 package Person;
-public class PersonCollection implements Cloneable{
+
+import java.io.Serializable;
+
+public class PersonCollection implements Cloneable, Serializable{
 	private Person[] people;
 	private int manyMembers;
 
@@ -171,6 +174,18 @@ public class PersonCollection implements Cloneable{
 		return false;
 	}
 	
+	public Person[] getPeople() {
+		return people;
+	}
+	public void setPeople(Person[] people) {
+		this.people = people;
+	}
+	public int getManyMembers() {
+		return manyMembers;
+	}
+	public void setManyMembers(int manyMembers) {
+		this.manyMembers = manyMembers;
+	}
 	public String readAll() {
 		String info="";
 		for (int count=0;count<manyMembers;count++) {
