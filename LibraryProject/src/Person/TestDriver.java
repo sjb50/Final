@@ -21,9 +21,9 @@ public class TestDriver {
 		bookCollection.add(book3);
 		sam.checkOut(book1);
 		sam.checkOut(book2);
-		sam.getFees();
+		sam.checkOut(book2):
 		sam.charge(bookCollection,book1);
-		
+		sam.charge(bookCollection, book2);
 	
 		matt.checkOut(book1);
 		System.out.println(book1+"\n"+book1.getWaitList().readQue());
