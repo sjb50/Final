@@ -1,10 +1,11 @@
+package Person;
 public class Person {
 	private String name;
-	private int contact;
+	private String contact;
 	private static int idCounter=1000;
 	private int Id;
 	
-	public Person(String name, int contact) {
+	public Person(String name, String contact) {
 		this.name = name;
 		this.contact = contact;
 		Id = idCounter;
@@ -17,10 +18,10 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getContact() {
+	public String getContact() {
 		return contact;
 	}
-	public void setContact(int contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 	

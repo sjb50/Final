@@ -1,3 +1,7 @@
+package Person;
+import Books.Book;
+import Books.BookCollection;
+
 public class Member extends Person {
 	private double fees;
 	private CheckedOutBooks books;
@@ -10,13 +14,13 @@ public class Member extends Person {
 	 * @Exceptions: none
 	 * @Throws: none
 	 */
-	public Member(String name, int contact) {
+	public Member(String name, String contact) {
 		super(name, contact);
 		this.books = new CheckedOutBooks();
 		this.fees = 0;
 	}
 
-	public Member(String name, int contact, int member) {
+	public Member(String name, String contact, int member) {
 		super(name, contact);
 		books = new CheckedOutBooks();
 		this.fees = 0;

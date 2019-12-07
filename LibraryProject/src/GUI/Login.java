@@ -1,4 +1,6 @@
+
 package GUI;
+import Person.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -21,7 +23,6 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class Login extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField userId_textField;
 	private JTextField password_textField;

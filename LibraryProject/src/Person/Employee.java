@@ -1,11 +1,4 @@
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
+package Person;
 
 
 /**
@@ -15,9 +8,9 @@
 public class Employee extends Person{
 	private String password;
 	
-	public Employee(String name, int contact) {
+	public Employee(String name, String contact, String password) {
 		super(name, contact);
-		this.password = " ";
+		this.password = password;
 	}
 
 	public String getPassword() {

@@ -1,4 +1,5 @@
 package GUI;
+import Person.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -8,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -15,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class Registration extends JFrame {
-
+	PersonCollection collection = new PersonCollection();
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -73,6 +76,13 @@ public class Registration extends JFrame {
 		btnSubmit.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnSubmit.setBackground(new Color(112, 128, 144));
 		btnSubmit.setBounds(156, 309, 141, 33);
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Employee newEmployee = new Employee(textField.getText(),textField_1.getText(),password_textField.getName());
+				collection.add(newEmployee);
+				
+			}
+		});
 		contentPane.add(btnSubmit);
 		
 		textField = new JTextField();

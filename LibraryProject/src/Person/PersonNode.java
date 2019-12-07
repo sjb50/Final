@@ -1,3 +1,4 @@
+package Person;
 public class PersonNode {
 	Person person;
 	PersonNode link;

@@ -1,5 +1,6 @@
+package Person;
 public class PersonCollection implements Cloneable{
-	private Member[] members;
+	private Person[] people;
 	private int manyMembers;
 
 	/**
@@ -13,7 +14,7 @@ public class PersonCollection implements Cloneable{
 	public PersonCollection() {
 		final int InitialCapacity = 20;
 		manyMembers = 0;
-		members = new Member[InitialCapacity];
+		people = new Person[InitialCapacity];
 	}
 	/**
 	 *@Specifications:
@@ -30,7 +31,7 @@ public class PersonCollection implements Cloneable{
 		}
 		else {
 			manyMembers = 0;
-			members = new Member[initialCapacity];
+			people = new Member[initialCapacity];
 		}
 	}
 	
@@ -42,22 +43,22 @@ public class PersonCollection implements Cloneable{
 	 *@Exceptions:
 	 *@Throws:
 	 */
-	public void add(Member member) {
+	public void add(Person person) {
 		
-		if (manyMembers == members.length) {
+		if (manyMembers == people.length) {
 			ensureCapacity(manyMembers*2+1);
 		}
-		members[manyMembers] = member;
+		people[manyMembers] = person;
 		manyMembers ++;
 	}
 	public void ensureCapacity(int minimumCapacity) {
 		
 		Member[] biggerCollection;
 		
-		if (members.length < minimumCapacity) {
+		if (people.length < minimumCapacity) {
 			biggerCollection = new Member[minimumCapacity];
-			System.arraycopy(members, 0, biggerCollection, 0, manyMembers);
-			members = biggerCollection;
+			System.arraycopy(people, 0, biggerCollection, 0, manyMembers);
+			people = biggerCollection;
 		}
 	}
 	
@@ -76,7 +77,7 @@ public class PersonCollection implements Cloneable{
 		}catch(CloneNotSupportedException e) {
 			throw new RuntimeException("This does not implement Cloneable");
 		}
-		result.members = members.clone();
+		result.people = people.clone();
 		return result;
 	}
 	
@@ -90,10 +91,10 @@ public class PersonCollection implements Cloneable{
 	 */
 	public void trimToSize() {
 		Member[] trimedMembers;
-		if(members.length != manyMembers) {
+		if(people.length != manyMembers) {
 			trimedMembers = new Member[manyMembers];
-			System.arraycopy(members, 0, trimedMembers, 0, manyMembers);
-			members = trimedMembers;
+			System.arraycopy(people, 0, trimedMembers, 0, manyMembers);
+			people = trimedMembers;
 		}
 	}
 	
@@ -109,10 +110,10 @@ public class PersonCollection implements Cloneable{
 	
 	public boolean searchByName(String name) {
 		try {
-			for(int i = 0; i < members.length; i++) {
-				if (members[i].getName().equalsIgnoreCase(name)) {
+			for(int i = 0; i < people.length; i++) {
+				if (people[i].getName().equalsIgnoreCase(name)) {
 					System.out.println("This is the member with the name " + name);
-					System.out.println(members[i]);
+					System.out.println(people[i]);
 					return true;
 				}
 			}
@@ -132,12 +133,12 @@ public class PersonCollection implements Cloneable{
 	 *@Exceptions:
 	 *@Throws:
 	 */
-	public boolean searchByContact(int contact) {
+	public boolean searchByContact(String contact) {
 		try {
-			for (int i = 0; i <members.length; i++) {
-				if (members[i].getContact() == contact) {
+			for (int i = 0; i <people.length; i++) {
+				if (people[i].getContact() == contact) {
 					System.out.println("Here is the member with this contact");
-					System.out.println(members[i]);
+					System.out.println(people[i]);
 					return true;
 				}
 			}
@@ -157,10 +158,10 @@ public class PersonCollection implements Cloneable{
 	 */
 	public boolean searchByMemberId(int id) {
 		try {
-			for (int i = 0; i < members.length; i++) {
-				if (members[i].getId() == id) {
+			for (int i = 0; i < people.length; i++) {
+				if (people[i].getId() == id) {
 					System.out.println("Here is the member with this memberId");
-					System.out.println(members[i]);
+					System.out.println(people[i]);
 					return true;
 				}
 			}
@@ -173,7 +174,7 @@ public class PersonCollection implements Cloneable{
 	public String readAll() {
 		String info="";
 		for (int count=0;count<manyMembers;count++) {
-			info+=members[count]+"\n";
+			info+=people[count]+"\n";
 		}
 		return info;
 	}
