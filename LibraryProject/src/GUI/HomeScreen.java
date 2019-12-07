@@ -28,7 +28,6 @@ public class HomeScreen extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField search_textField;
-	private JButton btnCheckOut;
 
 
 
@@ -95,26 +94,29 @@ public class HomeScreen extends JFrame {
 		JButton addBook_btn = new JButton("Add Book");
 		addBook_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AddBook newBook = new AddBook();
+				newBook.setVisible(true);
 			}
 		});
-		addBook_btn.setBounds(10, 11, 113, 33);
+		addBook_btn.setBounds(10, 11, 162, 33);
 		panel.add(addBook_btn);
 		addBook_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
 		JButton bookCollection_btn = new JButton("Book Collection");
 		bookCollection_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		bookCollection_btn.setBounds(133, 11, 189, 33);
+		bookCollection_btn.setBounds(252, 11, 189, 33);
 		panel.add(bookCollection_btn);
 		
 		JButton memberSignup_btn = new JButton("Member Sign Up");
 		memberSignup_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		memberSignup_btn.setBounds(332, 11, 203, 33);
+		memberSignup_btn.setBounds(506, 11, 203, 33);
+		memberSignup_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MemberSignUp newMember = new MemberSignUp();
+				newMember.setVisible(true);
+			}
+		});
 		panel.add(memberSignup_btn);
-		
-		btnCheckOut = new JButton("Check Out");
-		btnCheckOut.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnCheckOut.setBounds(545, 11, 176, 33);
-		panel.add(btnCheckOut);
 		
 		JButton btnNewButton = new JButton("Search ");
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 15));
