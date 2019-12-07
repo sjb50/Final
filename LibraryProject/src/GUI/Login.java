@@ -1,4 +1,4 @@
-package Gui;
+package GUI;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -84,7 +84,7 @@ public class Login extends JFrame {
 		
 		JLabel Icon_lbl = new JLabel("");
 		Icon_lbl.setBounds(10, 69, 266, 241);
-		Image img = new ImageIcon(this.getClass().getResource("/Apps-preferences-system-login-icon.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/image/Apps-preferences-system-login-icon.png")).getImage();
 		Icon_lbl.setIcon(new ImageIcon (img));
 		contentPane.add(Icon_lbl);
 	}

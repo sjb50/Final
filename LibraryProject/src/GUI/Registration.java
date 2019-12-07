@@ -1,4 +1,4 @@
-package Gui;
+package GUI;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -115,7 +115,7 @@ public class Registration extends JFrame {
 		JLabel lblBackImage = new JLabel();
 		lblBackImage.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblBackImage.setBackground(new Color(192, 192, 192));
-		Image img = new ImageIcon(this.getClass().getResource("/large-librarysymbol.jpg")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/image/large-librarysymbol.jpg")).getImage();
 		lblBackImage.setIcon(new ImageIcon (img));
 		lblBackImage.setBounds(0, 0, 408, 421);
 		contentPane.add(lblBackImage);
