@@ -1,32 +1,22 @@
-/**public class TestDriver {
+package Person;
+import Books.Book;
+import Books.BookCollection;
+import helpers.Sorting;
 
-	/**
-	 *@Specifications:
-	 *@Param:
-	 *@Precondition:
-	 *@Postcondition:
-	 *@Throws:
-	 */
+public class TestDriver {
 
-	/**public static void main(String[] args) {
-		@SuppressWarnings("unused")
-		PersonCollection collection = new PersonCollection();
-		Member matt = new Member("matt", 0);
-		Member sam = new Member("sam", 0);
-		Book book1 = new Book("hello", "hello", "hello", "hello");
-		Book book2 = new Book("goodbye", "goodbye", "goodbye", "goodbye");
-		Book book3 = new Book("go", "gye", "gbye", "gye");
+	public static void main(String[] args) {
+		Book book1 = new Book("abe", "erer", "hello");
+		Book book2 = new Book("bob", "deer", "goodbye");
+		Book book3 = new Book("cat", "cow", "gbye");
+		Book book4 = new Book("dog", "bat", "gbye");
+		Book book5 = new Book("ele", "ana", "gbye");
 		BookCollection bookCollection = new BookCollection();
 		bookCollection.add(book1);
 		bookCollection.add(book2);
 		bookCollection.add(book3);
-		sam.checkOut(book1);
-		sam.checkOut(book2);
-		sam.checkOut(book2):
-		sam.charge(bookCollection,book1);
-		sam.charge(bookCollection, book2);
-	
-		
+		bookCollection.add(book4);
+		Sorting.bookMergeSortByTitle(bookCollection.getBooks(),0,bookCollection.getManyBooks());
+		System.out.println(bookCollection.SearchByTitle(book2));
 	}
 }
-}**/

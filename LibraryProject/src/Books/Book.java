@@ -1,8 +1,10 @@
 package Books;
+
 import java.io.Serializable;
 
 import Person.WaitList;
-public class Book implements Cloneable, Serializable{
+
+public class Book implements Cloneable, Serializable, Comparable {
 
 	private String author;
 	private String title;
@@ -16,7 +18,7 @@ public class Book implements Cloneable, Serializable{
 		this.title = title;
 		this.picture = picture;
 		this.checkOut = false;
-		waitList=new WaitList();
+		waitList = new WaitList();
 	}
 
 	public String getAuthor() {
@@ -42,11 +44,10 @@ public class Book implements Cloneable, Serializable{
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	
+
 	public WaitList getWaitList() {
 		return waitList;
 	}
-
 
 	public boolean isCheckOut() {
 		return checkOut;
@@ -92,8 +93,13 @@ public class Book implements Cloneable, Serializable{
 
 	@Override
 	public String toString() {
-		return "Book [author=" + author + ", title=" + title + ", picture=" + picture  + ", checkOut="
-				+ checkOut + "]";
+		return "Book [author=" + author + ", title=" + title + ", picture=" + picture + ", checkOut=" + checkOut + "]";
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

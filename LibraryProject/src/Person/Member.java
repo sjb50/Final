@@ -122,11 +122,6 @@ public class Member extends Person {
 	 * @Throws:none
 	 */
 	
-	  public void search(BookCollection collection,Book book) { 
-		  collection.Search(book);
-		  }
-
-
 	/**
 	 * @Specifications: Equals method that test whether or not a new member is an instance of the Member class
 	 * @Param: gets an object as parameter

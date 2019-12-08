@@ -14,13 +14,14 @@ import java.io.Serializable;
  * @author sjb19 Class Designed to hold a collection of books that are in a
  *         libraries collection.
  */
-public class BookCollection implements Serializable{
+public class BookCollection implements Serializable, Comparable {
 	private int size;
 	final int initialCapacity = 100;
 	private Book[] books;
+	private int manyBooks;
 
 	public BookCollection() {
-		size=0;
+		size = 0;
 		books = new Book[initialCapacity];
 	}
 
@@ -37,13 +38,14 @@ public class BookCollection implements Serializable{
 			if (books[count] == null) {
 				books[count] = book;
 				++size;
+				manyBooks++;
 				return;
 			}
 		}
 		if (size >= books.length) {
 			ensureCapacity();
 		}
-
+		manyBooks++;
 		books[size++] = book;
 	}
 
@@ -62,6 +64,7 @@ public class BookCollection implements Serializable{
 			if (book.equals(books[i])) {
 				books[i] = null;
 				--size;
+				manyBooks--;
 				return true;
 			}
 		}
@@ -76,7 +79,43 @@ public class BookCollection implements Serializable{
 	 * @Postcondition: returns the book if found.
 	 * @Throws: none
 	 */
-	public <T> Book Search(T book) {
+	public Book SearchByAuthor(Book book) {
+		int first = 0;
+		int last = manyBooks;
+		int middle = (first + last) / 2;
+		while (first < last) {
+			System.out.println(manyBooks);
+			if (book.getAuthor().equals(books[middle].getAuthor())) {
+				return book;
+			}
+			if (book.getAuthor().compareTo(books[middle].getAuthor()) > 0) {
+				first = middle+1;
+				middle = (first + last) / 2;
+			} else {
+				last = middle-1;
+				middle = (first + last) / 2;
+			}
+		}
+		return null;
+	}
+
+	public Book SearchByTitle(Book book) {
+		int first = 0;
+		int last = manyBooks;
+		int middle = (first + last) / 2;
+		while (first != last) {
+			System.out.println("here");
+			if (book.getTitle().equals(books[middle].getTitle())) {
+				return book;
+			}
+			if (book.getTitle().compareTo(books[middle].getTitle()) > 0) {
+				first = middle+1;
+				middle = (first + last) / 2;
+			} else {
+				last = middle-1;
+				middle = (first + last) / 2;
+			}
+		}
 		return null;
 	}
 
@@ -97,31 +136,41 @@ public class BookCollection implements Serializable{
 		books = expandedBooks;
 	}
 
-/**
- *@Specifications: checks to see if the array is empty
- *@Param: none
- *@Precondition: none
- *@Postcondition: returns true if empty.
- *@Throws:
- */
-public void isEmpty() {
-	 if (books == null) {
-            System.out.println("There are no books.");
-            return;
-        }
-           for (int i = 0; i < books.length; i++) {
-        	   if (books != null) {
-        		   System.out.println( books[i]);
-        	   }
+	/**
+	 * @Specifications: checks to see if the array is empty
+	 * @Param: none
+	 * @Precondition: none
+	 * @Postcondition: returns true if empty.
+	 * @Throws:
+	 */
+	public void isEmpty() {
+		if (books == null) {
+			System.out.println("There are no books.");
+			return;
 		}
-        
-}
+		for (int i = 0; i < books.length; i++) {
+			if (books != null) {
+				System.out.println(books[i]);
+			}
+		}
 
-public Book[] getBooks() {
-	return books;
-}
+	}
 
-public void setBooks(Book[] books) {
-	this.books = books;
-}
+	public int getManyBooks() {
+		return manyBooks;
+	}
+
+	public Book[] getBooks() {
+		return books;
+	}
+
+	public void setBooks(Book[] books) {
+		this.books = books;
+	}
+
+	@Override
+	public int compareTo(Object book) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
