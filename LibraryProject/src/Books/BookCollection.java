@@ -8,11 +8,13 @@
  */
 package Books;
 
+import java.io.Serializable;
+
 /**
  * @author sjb19 Class Designed to hold a collection of books that are in a
  *         libraries collection.
  */
-public class BookCollection {
+public class BookCollection implements Serializable{
 	private int size;
 	final int initialCapacity = 100;
 	private Book[] books;

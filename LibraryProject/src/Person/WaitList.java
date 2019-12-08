@@ -8,11 +8,13 @@
  */
 package Person;
 
+import java.io.Serializable;
+
 /**
  * @author sjb19
  *
  */
-public class WaitList {
+public class WaitList implements Serializable{
 	PersonNode next;
 	PersonNode last;
 

@@ -1,20 +1,20 @@
 package Books;
+import java.io.Serializable;
+
 import Person.WaitList;
-public class Book implements Cloneable {
+public class Book implements Cloneable, Serializable{
 
 	private String author;
 	private String title;
 	private String picture;
-	private String book;
 	private boolean checkOut;
 	private WaitList waitList;
 
-	public Book(String author, String title, String picture, String book) {
+	public Book(String author, String title, String picture) {
 		super();
 		this.author = author;
 		this.title = title;
 		this.picture = picture;
-		this.book = book;
 		this.checkOut = false;
 		waitList=new WaitList();
 	}
@@ -42,16 +42,7 @@ public class Book implements Cloneable {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-
-	public String getBook() {
-		return book;
-	}
-
-	public void setBook(String book) {
-		this.book = book;
-	}
 	
-
 	public WaitList getWaitList() {
 		return waitList;
 	}
@@ -79,11 +70,6 @@ public class Book implements Cloneable {
 				return false;
 		} else if (!author.equals(other.author))
 			return false;
-		if (book == null) {
-			if (other.book != null)
-				return false;
-		} else if (!book.equals(other.book))
-			return false;
 		if (checkOut != other.checkOut)
 			return false;
 		if (picture == null) {
@@ -106,7 +92,7 @@ public class Book implements Cloneable {
 
 	@Override
 	public String toString() {
-		return "Book [author=" + author + ", title=" + title + ", picture=" + picture + ", book=" + book + ", checkOut="
+		return "Book [author=" + author + ", title=" + title + ", picture=" + picture  + ", checkOut="
 				+ checkOut + "]";
 	}
 

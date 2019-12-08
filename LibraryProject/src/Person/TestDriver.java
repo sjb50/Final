@@ -7,9 +7,8 @@
 	 *@Postcondition:
 	 *@Throws:
 	 */
+
 	/**public static void main(String[] args) {
-=======
-	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		PersonCollection collection = new PersonCollection();
 		Member matt = new Member("matt", 0);
@@ -26,10 +25,8 @@
 		sam.checkOut(book2):
 		sam.charge(bookCollection,book1);
 		sam.charge(bookCollection, book2);
->>>>>>> branch 'master' of https://github.com/sjb50/Final.git
 	
 		
 	}
-<<<<<<< HEAD
-}**/
 }
+}**/
