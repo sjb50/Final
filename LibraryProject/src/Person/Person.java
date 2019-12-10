@@ -67,7 +67,8 @@ public class Person implements Serializable {
 			return false;
 		}
 		Person newPerson = (Person) obj;
-		if (this.name.equals(newPerson.name) && this.contact == newPerson.contact && this.Id == newPerson.Id) {
+		if (this.name.equals(newPerson.name) && this.contact == newPerson.contact && this.Id == newPerson.Id
+		   		&& this.idCounter == newPerson.idCounter) {
 			return true;
 		}
 		return false;

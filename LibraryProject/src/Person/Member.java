@@ -89,7 +89,7 @@ public class Member extends Person {
 	 * @Specifications: Charges a customer for any missing books
 	 * @Param: BookCollection and the book not found
 	 * @Precondition: none
-	 * @Postcondition: charge $10 for the missing book 
+	 * @Postcondition: charge $10 for any missing book 
 	 * @Exceptions: none
 	 * @Throws:none
 	 */
@@ -113,15 +113,6 @@ public class Member extends Person {
 		
 	  fees=-payment;
 	}
-
-	/**
-	 * @Specifications: search method that searches for a book according to the parameter entered by the member
-	 * @Param: takes the book information that is used for the search
-	 * @Precondition: The bookCollection must exist
-	 * @Postcondition: reach the book from the book collection
-	 * @Exceptions:none
-	 * @Throws:none
-	 */
 	
 	/**
 	 * @Specifications: Equals method that test whether or not a new member is an instance of the Member class
