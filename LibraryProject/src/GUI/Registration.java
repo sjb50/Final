@@ -80,6 +80,12 @@ public class Registration extends JFrame implements Serializable {
 		lblContact.setBounds(47, 201, 95, 26);
 		contentPane.add(lblContact);
 
+		JLabel lblBackImage = new JLabel();
+		lblBackImage.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		lblBackImage.setBackground(new Color(153, 204, 255));
+		lblBackImage.setBounds(0, 0, 408, 421);
+		contentPane.add(lblBackImage);
+
 		JButton btnSubmit = new JButton("Submit ");
 		btnSubmit.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnSubmit.setBackground(new Color(112, 128, 144));
@@ -121,11 +127,6 @@ public class Registration extends JFrame implements Serializable {
 		ContactField.setBounds(148, 202, 181, 26);
 		contentPane.add(ContactField);
 
-		JLabel lblBackImage = new JLabel();
-		lblBackImage.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		lblBackImage.setBackground(new Color(153, 204, 255));
-		lblBackImage.setBounds(0, 11, 408, 421);
-		contentPane.add(lblBackImage);
 	}
 
 	public void loadFile() {
@@ -151,7 +152,6 @@ public class Registration extends JFrame implements Serializable {
 		}
 	}
 
-	
 	public void saveFile() {
 		try {
 			// Saving of object in a file

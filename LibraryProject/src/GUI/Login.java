@@ -33,7 +33,8 @@ public class Login extends JFrame implements Serializable {
 	/**
 	 * Launch the application.
 	 */
-	/**public static void main(String[] args) {
+
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -44,7 +45,7 @@ public class Login extends JFrame implements Serializable {
 				}
 			}
 		});
-	}**/
+	}
 
 	/**
 	 * Create the frame.
@@ -73,10 +74,14 @@ public class Login extends JFrame implements Serializable {
 		contentPane.add(loginFailLbl);
 		loginFailLbl.setVisible(false);
 
-		userId_textField = new JTextField();
-		userId_textField.setBounds(371, 81, 188, 36);
-		contentPane.add(userId_textField);
-		userId_textField.setColumns(10);
+		JLabel Icon_lbl = new JLabel("");
+		Icon_lbl.setBounds(10, 69, 266, 241);
+		Image img = new ImageIcon(this.getClass().getResource("/image/Apps-preferences-system-login-icon.png"))
+				.getImage();
+		Icon_lbl.setIcon(new ImageIcon(img));
+		contentPane.add(Icon_lbl);
+
+		;
 
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -127,13 +132,10 @@ public class Login extends JFrame implements Serializable {
 		password_textField.setBounds(371, 176, 188, 36);
 		contentPane.add(password_textField);
 
-		JLabel Icon_lbl = new JLabel("");
-		Icon_lbl.setBounds(10, 69, 266, 241);
-		Image img = new ImageIcon(this.getClass().getResource("/image/Apps-preferences-system-login-icon.png"))
-				.getImage();
-		Icon_lbl.setIcon(new ImageIcon(img));
-		contentPane.add(Icon_lbl);
-
+		userId_textField = new JTextField();
+		userId_textField.setBounds(371, 81, 188, 36);
+		contentPane.add(userId_textField);
+		userId_textField.setColumns(10);
 	}
 
 	public void loadFile() {
