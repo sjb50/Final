@@ -36,6 +36,7 @@ import Person.PersonCollection;
 
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.print.Book;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -180,23 +181,55 @@ public class HomeScreen extends JFrame {
 		bookCollection_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadBookFile();
+				test.removeAll();
 				for (int count = 0; count < books.getManyBooks(); count++) {
+					JPanel bookContainer = new JPanel();
+					bookContainer.setMaximumSize(new Dimension(640, 150));
+					bookContainer.setMinimumSize(new Dimension(639, 149));
+					bookContainer.setBackground(Color.blue);
+
 					JTextArea match = new JTextArea(books.getBooks()[count].toString());
-					Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture())).getImage();
+					Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
+							.getImage();
+					Image newimg = img1.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
 					match.setBackground(Color.pink);
 					match.setMaximumSize(new Dimension(640, 150));
 					match.setMinimumSize(new Dimension(639, 149));
 
+					JLabel photo = new JLabel();
+					photo.setMaximumSize(new Dimension(50, 50));
+					photo.setMinimumSize(new Dimension(10, 10));
+					photo.setIcon(new ImageIcon(newimg));
+					photo.setBackground(Color.blue);
+
 					JPanel breaker = new JPanel();
 					breaker.setBackground(Color.WHITE);
 					breaker.setMaximumSize(new Dimension(640, 10));
+					bookContainer.add(match);
+					bookContainer.add(photo);
+					if (!(books.getBooks()[count].isCheckOut())) {
+						JButton checkout = new JButton("Checkout");
+						checkout.setActionCommand(Integer.toString(count));
+						checkout.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								System.out.println(e.getActionCommand());
+								JPanel checkOutPage = new JPanel();
+								checkOutPage.setSize(new Dimension(50,50));
+								checkOutPage.setVisible(true);
+								
+							}
+						});
+						bookContainer.add(checkout);
 
-					test.add(match);
+					}
+
+					test.add(bookContainer);
+
 					test.add(breaker);
 				}
 			}
 		});
-		
+
 		memberList_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadPeopleFile();
