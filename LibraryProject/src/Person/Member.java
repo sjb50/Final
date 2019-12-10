@@ -158,7 +158,7 @@ public class Member extends Person {
 
 	@Override
 	public String toString() {
-		return "Member [Name =" + super.getName() + ", Id=" + super.getId() + " fees=" + fees + "]";
+		return (super.toString()+"\nFees: "+getFees()+"\nCheckedOutBooks: " +readCheckedOut());
 	}
 
 	

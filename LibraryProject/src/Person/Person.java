@@ -46,7 +46,7 @@ public class Person implements Serializable {
 	}
 
 	public String toString() {
-		return "Person:" + name + ",\ncontact:" + contact + "\nId:"+Id;
+		return "Name" + name + ",\ncontact:" + contact + "\nId:"+Id;
 	}
 	
 	protected Object clone() {

@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,37 +10,62 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.LayoutManager;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.border.EtchedBorder;
+
+import Books.BookCollection;
+import Person.*;
+import Person.PersonCollection;
+
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.ScrollPane;
+import java.awt.Panel;
 
 public class HomeScreen extends JFrame {
-
+	String memberCollectionFile = "memberCollection.text";
+	PersonCollection member = new PersonCollection();
+	String BookCollectionFile = "books.txt";
+	BookCollection books = new BookCollection();
 	private JPanel contentPane;
+	private JPanel test;
 	private JTextField search_textField;
 	private JTextField textField;
 
 	/**
 	 * Create the frame.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public HomeScreen() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,12 +145,6 @@ public class HomeScreen extends JFrame {
 		bookCollection_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		bookCollection_btn.setBounds(170, 11, 176, 33);
 		panel.add(bookCollection_btn);
-		bookCollection_btn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
 
 		JButton memberSignup_btn = new JButton("Member Sign Up");
 		memberSignup_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -141,21 +161,104 @@ public class HomeScreen extends JFrame {
 		memberList_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		memberList_btn.setBounds(542, 11, 179, 33);
 		panel.add(memberList_btn);
-		memberList_btn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
 
 		JButton btnNewButton = new JButton("Search ");
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		btnNewButton.setBounds(540, 169, 91, 32);
 		contentPane.add(btnNewButton);
 
-		textField = new JTextField();
-		textField.setBounds(10, 240, 711, 457);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		test = new JPanel();
+		test.setSize(new Dimension(700, 700));
+
+		JScrollPane scrollPane = new JScrollPane(test, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBounds(36, 215, 669, 405);
+		contentPane.add(scrollPane);
+
+		bookCollection_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loadBookFile();
+				for (int count = 0; count < books.getManyBooks(); count++) {
+					JTextArea match = new JTextArea(books.getBooks()[count].toString());
+					Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture())).getImage();
+					match.setBackground(Color.pink);
+					match.setMaximumSize(new Dimension(640, 150));
+					match.setMinimumSize(new Dimension(639, 149));
+
+					JPanel breaker = new JPanel();
+					breaker.setBackground(Color.WHITE);
+					breaker.setMaximumSize(new Dimension(640, 10));
+
+					test.add(match);
+					test.add(breaker);
+				}
+			}
+		});
+		
+		memberList_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loadPeopleFile();
+				test.removeAll();
+				for (int count = 0; count < member.getManyMembers(); count++) {
+					Member person = (Member) member.getPeople()[count];
+					JTextArea match = new JTextArea(person.toString());
+					match.setBackground(Color.pink);
+					match.setMaximumSize(new Dimension(640, 150));
+					match.setMinimumSize(new Dimension(639, 149));
+
+					JPanel breaker = new JPanel();
+					breaker.setBackground(Color.WHITE);
+					breaker.setMaximumSize(new Dimension(640, 10));
+
+					test.add(match);
+					test.add(breaker);
+				}
+			}
+		});
 	}
+
+	public void loadPeopleFile() {
+		try {
+			// Reading the object from a file
+			FileInputStream file = new FileInputStream(memberCollectionFile);
+			ObjectInputStream in = new ObjectInputStream(file);
+			// Method for deserialization of object
+			member = (PersonCollection) in.readObject();
+			in.close();
+			file.close();
+
+		}
+
+		catch (IOException ex) {
+			System.out.println(ex);
+		}
+
+		catch (ClassNotFoundException ex) {
+			System.out.println("ClassNotFoundException is caught");
+		}
+	}
+
+	public void loadBookFile() {
+		try {
+			// Reading the object from a file
+			FileInputStream file = new FileInputStream(BookCollectionFile);
+			ObjectInputStream in = new ObjectInputStream(file);
+			// Method for deserialization of object
+			books = (BookCollection) in.readObject();
+			in.close();
+			file.close();
+
+		}
+
+		catch (IOException ex) {
+			System.out.println(ex);
+		}
+
+		catch (ClassNotFoundException ex) {
+			System.out.println("ClassNotFoundException is caught");
+		}
+	}
+
 }

@@ -8,13 +8,15 @@
  */
 package Person;
 
+import java.io.Serializable;
+
 import Books.Book;
 
 /**
  * @author sjb19
  *
  */
-public class CheckedOutBooks {
+public class CheckedOutBooks implements Serializable{
 	private BookNode head;
 	
 	public CheckedOutBooks(){

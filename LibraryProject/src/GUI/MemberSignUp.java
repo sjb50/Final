@@ -44,7 +44,7 @@ public class MemberSignUp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblLibrary = new JLabel("SAN LIBRARY ");
 		lblLibrary.setFont(new Font("Bookman Old Style", Font.BOLD, 25));
 		lblLibrary.setBounds(47, 13, 216, 40);
@@ -59,24 +59,24 @@ public class MemberSignUp extends JFrame {
 		lblFirstName.setFont(new Font("Arial", Font.BOLD, 15));
 		lblFirstName.setBounds(47, 152, 95, 26);
 		contentPane.add(lblFirstName);
-		
+
 		JLabel lblContact = new JLabel("Contact:");
 		lblContact.setFont(new Font("Arial", Font.BOLD, 15));
 		lblContact.setBounds(47, 214, 95, 26);
 		contentPane.add(lblContact);
-		
+
 		textField_name = new JTextField();
 		textField_name.setBackground(Color.LIGHT_GRAY);
 		textField_name.setBounds(169, 154, 150, 24);
 		contentPane.add(textField_name);
 		textField_name.setColumns(10);
-		
+
 		textField_contact = new JTextField();
 		textField_contact.setBackground(Color.LIGHT_GRAY);
 		textField_contact.setColumns(10);
 		textField_contact.setBounds(169, 216, 150, 24);
 		contentPane.add(textField_contact);
-		
+
 		JTextField ErrTextField = new JTextField();
 		ErrTextField.setBackground(Color.WHITE);
 		ErrTextField.setText("Error:Missing data, please fill out everything");
@@ -84,29 +84,30 @@ public class MemberSignUp extends JFrame {
 		contentPane.add(ErrTextField);
 		ErrTextField.setVisible(false);
 		ErrTextField.setColumns(10);
-		
+
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 15));
 		btnSubmit.setBounds(188, 301, 95, 33);
 		contentPane.add(btnSubmit);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField_contact.getText().equals("")|| textField_name.getText().equals("")) {
-					ErrTextField.setVisible(true);	
-				}else {
-					ErrTextField.setVisible(false);	
-					Person newmember = new Person(textField_contact.getText(), textField_name.getText());
+				if (textField_contact.getText().equals("") || textField_name.getText().equals("")) {
+					ErrTextField.setVisible(true);
+				} else {
+					ErrTextField.setVisible(false);
+					Member newmember = new Member(textField_name.getText(),textField_contact.getText());
 					System.out.println(newmember);
 					member.add(newmember);
 					saveFile();
 					System.out.println(member.readAll());
-					}
-		
+				}
+
 			}
 
-	});
-			
-		}
+		});
+
+	}
+
 	public void loadFile() {
 		try {
 			// Reading the object from a file
@@ -146,8 +147,5 @@ public class MemberSignUp extends JFrame {
 		}
 
 	}
-	
-	
-		
-	
+
 }

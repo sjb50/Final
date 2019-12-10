@@ -118,7 +118,9 @@ public class AddBook extends JFrame implements Serializable {
 				chooser.setFileFilter(filter);
 				int returnVal = chooser.showOpenDialog(new JFileChooser());
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					imageFile = chooser.getSelectedFile().getAbsolutePath();
+					imageFile = chooser.getSelectedFile().getName();
+					System.out.println(imageFile);
+					Image img1 = new ImageIcon(this.getClass().getResource(imageFile)).getImage();
 				}
 			}
 		});

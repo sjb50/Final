@@ -93,7 +93,7 @@ public class Book implements Cloneable, Serializable, Comparable {
 
 	@Override
 	public String toString() {
-		return "Book [author=" + author + ", title=" + title + ", picture=" + picture + ", checkOut=" + checkOut + "]";
+		return "Title:" + title + "\nAuthor:"+ author+"\nAvailable: " + checkOut ;
 	}
 
 	@Override
