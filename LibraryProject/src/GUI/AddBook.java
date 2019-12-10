@@ -103,10 +103,10 @@ public class AddBook extends JFrame implements Serializable {
 			}
 		});
 
-		JLabel lblNewLabel_1 = new JLabel("Display");
-		lblNewLabel_1.setBackground(new Color(102, 153, 51));
-		lblNewLabel_1.setBounds(40, 239, 146, 154);
-		contentPane.add(lblNewLabel_1);
+		JLabel displayLbl = new JLabel("Display");
+		displayLbl.setBackground(new Color(102, 153, 51));
+		displayLbl.setBounds(40, 239, 146, 154);
+		contentPane.add(displayLbl);
 
 		JButton btnChoosePhoto = new JButton("Choose");
 		btnChoosePhoto.setBounds(227, 239, 104, 34);

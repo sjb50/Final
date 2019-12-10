@@ -56,10 +56,10 @@ public class PersonCollection implements Cloneable, Serializable{
 	}
 	public void ensureCapacity(int minimumCapacity) {
 		
-		Member[] biggerCollection;
+		Person[] biggerCollection;
 		
 		if (people.length < minimumCapacity) {
-			biggerCollection = new Member[minimumCapacity];
+			biggerCollection = new Person[minimumCapacity];
 			System.arraycopy(people, 0, biggerCollection, 0, manyMembers);
 			people = biggerCollection;
 		}

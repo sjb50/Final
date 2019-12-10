@@ -33,10 +33,6 @@ public class Login extends JFrame implements Serializable {
 	/**
 	 * Launch the application.
 	 */
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/sjb50/Final.git
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -163,5 +159,4 @@ public class Login extends JFrame implements Serializable {
 			System.out.println("ClassNotFoundException is caught");
 		}
 	}
-
 }
