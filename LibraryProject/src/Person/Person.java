@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Person implements Serializable {
 	private String name;
 	private String contact;
-	private static int idCounter=1000;
+	private static int idCounter=2000;
 	private int Id;
 	
 	public static int getIdCounter() {

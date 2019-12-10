@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -95,15 +97,20 @@ public class Registration extends JFrame implements Serializable {
 				if (NametextField.getText().equals("") || ContactField.getText().equals("")
 						|| password_textField.getText().equals("")) {
 					lblError.setVisible(true);
+					
 				} else {
 					lblError.setVisible(false);
 					Employee newEmployee = new Employee(NametextField.getText(), ContactField.getText(),
 							password_textField.getText());
+					newEmployee.setId(1000+(collection.getManyMembers()*10));
 					System.out.println(newEmployee);
 					collection.add(newEmployee);
 					saveFile();
 					System.out.println(collection.readAll());
+					JOptionPane.showInputDialog("Here is your Id.\n", newEmployee.getId());
+					
 				}
+				
 			}
 		});
 		contentPane.add(btnSubmit);

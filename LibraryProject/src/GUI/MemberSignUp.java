@@ -96,8 +96,10 @@ public class MemberSignUp extends JFrame {
 				} else {
 					ErrTextField.setVisible(false);
 					Member newmember = new Member(textField_name.getText(),textField_contact.getText());
+					newmember.setId(1000+(member.getManyMembers()*10));
 					System.out.println(newmember);
 					member.add(newmember);
+					;
 					saveFile();
 					System.out.println(member.readAll());
 				}
