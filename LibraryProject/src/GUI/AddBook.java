@@ -68,6 +68,7 @@ public class AddBook extends JFrame implements Serializable {
 		lblTitleName.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTitleName.setBounds(40, 180, 118, 34);
 		contentPane.add(lblTitleName);
+		
 
 		JLabel lblAddBook = new JLabel("Add Book");
 		lblAddBook.setFont(new Font("Times New Roman", Font.BOLD, 25));
@@ -83,7 +84,10 @@ public class AddBook extends JFrame implements Serializable {
 		JLabel lblNewLabel_1 = new JLabel("Display");
 		lblNewLabel_1.setBackground(new Color(102, 153, 51));
 		lblNewLabel_1.setBounds(40, 239, 146, 154);
+		Image img1 = new ImageIcon(this.getClass().getResource("61-uFOBDLDL.jpg")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(img1));
 		contentPane.add(lblNewLabel_1);
+		
 
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(386, 393, 104, 34);
@@ -115,12 +119,12 @@ public class AddBook extends JFrame implements Serializable {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				chooser.setFileFilter(filter);
 				int returnVal = chooser.showOpenDialog(new JFileChooser());
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					imageFile = chooser.getSelectedFile().getName();
 					System.out.println(imageFile);
-					Image img1 = new ImageIcon(this.getClass().getResource(imageFile)).getImage();
 				}
 			}
 		});
