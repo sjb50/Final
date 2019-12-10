@@ -34,6 +34,7 @@ public class Member extends Person {
 	 * @Exceptions: none
 	 * @Throws:none
 	 */
+	
 	public double getFees() {
 		return fees;
 	}

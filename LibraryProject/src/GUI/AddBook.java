@@ -31,8 +31,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
-public class AddBook extends JFrame implements Serializable{
-	String imageFile="";
+public class AddBook extends JFrame implements Serializable {
+	String imageFile = "";
 	String bookFile = "books.txt";
 	BookCollection books = new BookCollection();
 	private JPanel contentPane;
@@ -49,7 +49,7 @@ public class AddBook extends JFrame implements Serializable{
 	 */
 	public AddBook() {
 		loadFile();
-		Book[] array=books.getBooks();
+		Book[] array = books.getBooks();
 		System.out.println(array[0]);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 527, 477);
@@ -69,15 +69,21 @@ public class AddBook extends JFrame implements Serializable{
 		lblTitleName.setBounds(40, 180, 118, 34);
 		contentPane.add(lblTitleName);
 
-		textField_AuthorName = new JTextField();
-		textField_AuthorName.setBounds(227, 119, 175, 34);
-		contentPane.add(textField_AuthorName);
-		textField_AuthorName.setColumns(10);
+		JLabel lblAddBook = new JLabel("Add Book");
+		lblAddBook.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		lblAddBook.setBounds(10, 0, 188, 55);
+		contentPane.add(lblAddBook);
 
-		textField_TitleName = new JTextField();
-		textField_TitleName.setColumns(10);
-		textField_TitleName.setBounds(227, 181, 175, 34);
-		contentPane.add(textField_TitleName);
+		JLabel Library_lbl = new JLabel("");
+		Library_lbl.setBounds(161, 0, 126, 118);
+		Image libraryimg = new ImageIcon(this.getClass().getResource("/image/Books-1-icon.png")).getImage();
+		Library_lbl.setIcon(new ImageIcon(libraryimg));
+		contentPane.add(Library_lbl);
+
+		JLabel lblNewLabel_1 = new JLabel("Display");
+		lblNewLabel_1.setBackground(new Color(102, 153, 51));
+		lblNewLabel_1.setBounds(40, 239, 146, 154);
+		contentPane.add(lblNewLabel_1);
 
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(386, 393, 104, 34);
@@ -89,16 +95,14 @@ public class AddBook extends JFrame implements Serializable{
 					ErrTextField.setVisible(true);
 				} else {
 					ErrTextField.setVisible(true);
-					Book newBook = new Book(textField_TitleName.getText(), textField_AuthorName.getText(),
-							imageFile);
+					Book newBook = new Book(textField_TitleName.getText(), textField_AuthorName.getText(), imageFile);
 					books.add(newBook);
 					saveFile();
-					System.out.println("\n"+newBook);
+					System.out.println("\n" + newBook);
 				}
 			}
 		});
-		
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Display");
 		lblNewLabel_1.setBackground(new Color(102, 153, 51));
 		lblNewLabel_1.setBounds(40, 239, 146, 154);
@@ -114,22 +118,21 @@ public class AddBook extends JFrame implements Serializable{
 				chooser.setFileFilter(filter);
 				int returnVal = chooser.showOpenDialog(new JFileChooser());
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					imageFile=chooser.getSelectedFile().getAbsolutePath();
+					imageFile = chooser.getSelectedFile().getAbsolutePath();
 				}
 			}
 		});
 
-		JLabel lblAddBook = new JLabel("Add Book");
-		lblAddBook.setFont(new Font("Times New Roman", Font.BOLD, 25));
-		lblAddBook.setBounds(10, 0, 188, 55);
-		contentPane.add(lblAddBook);
+		textField_AuthorName = new JTextField();
+		textField_AuthorName.setBounds(227, 119, 175, 34);
+		contentPane.add(textField_AuthorName);
+		textField_AuthorName.setColumns(10);
 
-		JLabel Library_lbl = new JLabel("");
-		Library_lbl.setBounds(161, 0, 126, 118);
-		Image libraryimg = new ImageIcon(this.getClass().getResource("/image/Books-1-icon.png")).getImage();
-		Library_lbl.setIcon(new ImageIcon(libraryimg));
-		contentPane.add(Library_lbl);
-		
+		textField_TitleName = new JTextField();
+		textField_TitleName.setColumns(10);
+		textField_TitleName.setBounds(227, 181, 175, 34);
+		contentPane.add(textField_TitleName);
+
 		ErrTextField = new JTextField();
 		ErrTextField.setBackground(new Color(153, 204, 255));
 		ErrTextField.setText("Please complete form");
