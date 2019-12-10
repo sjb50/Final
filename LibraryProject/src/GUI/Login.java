@@ -50,10 +50,6 @@ public class Login extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public Login() {
-		loadFile();
-		for (int count = 0; count < people.getPeople().length; count++) {
-			System.out.println(people.getPeople()[count]);
-		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 585, 433);
 		contentPane = new JPanel();
@@ -93,6 +89,7 @@ public class Login extends JFrame implements Serializable {
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					loadFile();
 					int username = Integer.parseInt(userId_textField.getText());
 					String password = password_textField.getText();
 					for (int count = 0; count < people.getManyMembers(); count++) {

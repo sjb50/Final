@@ -35,8 +35,9 @@ public class MemberSignUp extends JFrame {
 	private JTextField textField_contact;
 
 	public MemberSignUp() {
+		loadFile();
 		setBackground(new Color(153, 204, 255));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 424, 460);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -145,6 +146,7 @@ public class MemberSignUp extends JFrame {
 		}
 
 	}
+	
 	
 		
 	

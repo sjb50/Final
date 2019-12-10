@@ -51,7 +51,7 @@ public class AddBook extends JFrame implements Serializable {
 		loadFile();
 		Book[] array = books.getBooks();
 		System.out.println(array[0]);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 527, 477);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));

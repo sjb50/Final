@@ -10,15 +10,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import java.awt.Component;
+
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
@@ -32,8 +39,9 @@ public class HomeScreen extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
-	public HomeScreen() {
+	public HomeScreen() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 747, 747);
 		contentPane = new JPanel();
@@ -149,6 +157,5 @@ public class HomeScreen extends JFrame {
 		textField.setBounds(10, 240, 711, 457);
 		contentPane.add(textField);
 		textField.setColumns(10);
-
 	}
 }

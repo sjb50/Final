@@ -38,7 +38,6 @@ public class WaitList implements Serializable{
 		Person person = next.getPerson();
 		next = next.getLink();
 		return person;
-
 	}
 
 	public String readQue() {

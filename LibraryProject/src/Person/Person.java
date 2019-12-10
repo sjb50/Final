@@ -8,6 +8,15 @@ public class Person implements Serializable {
 	private static int idCounter=1000;
 	private int Id;
 	
+	public static int getIdCounter() {
+		return idCounter;
+	}
+
+	public static void setIdCounter(int idCounter) {
+		Person.idCounter = idCounter;
+	}
+
+	
 	public Person(String name, String contact) {
 		this.name = name;
 		this.contact = contact;
