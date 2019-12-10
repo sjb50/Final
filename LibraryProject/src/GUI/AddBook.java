@@ -39,6 +39,7 @@ public class AddBook extends JFrame implements Serializable {
 	private JTextField textField_AuthorName;
 	private JTextField textField_TitleName;
 	private JTextField ErrTextField;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -68,7 +69,6 @@ public class AddBook extends JFrame implements Serializable {
 		lblTitleName.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblTitleName.setBounds(40, 180, 118, 34);
 		contentPane.add(lblTitleName);
-		
 
 		JLabel lblAddBook = new JLabel("Add Book");
 		lblAddBook.setFont(new Font("Times New Roman", Font.BOLD, 25));
@@ -81,13 +81,9 @@ public class AddBook extends JFrame implements Serializable {
 		Library_lbl.setIcon(new ImageIcon(libraryimg));
 		contentPane.add(Library_lbl);
 
-		JLabel lblNewLabel_1 = new JLabel("Display");
-		lblNewLabel_1.setBackground(new Color(102, 153, 51));
-		lblNewLabel_1.setBounds(40, 239, 146, 154);
-		Image img1 = new ImageIcon(this.getClass().getResource("61-uFOBDLDL.jpg")).getImage();
-		lblNewLabel_1.setIcon(new ImageIcon(img1));
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(40, 284, 146, 109);
 		contentPane.add(lblNewLabel_1);
-		
 
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(386, 393, 104, 34);
@@ -112,23 +108,6 @@ public class AddBook extends JFrame implements Serializable {
 		displayLbl.setBounds(40, 239, 146, 154);
 		contentPane.add(displayLbl);
 
-		JButton btnChoosePhoto = new JButton("Choose");
-		btnChoosePhoto.setBounds(227, 239, 104, 34);
-		contentPane.add(btnChoosePhoto);
-		btnChoosePhoto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
-				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(new JFileChooser());
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					imageFile = chooser.getSelectedFile().getName();
-					System.out.println(imageFile);
-				}
-			}
-		});
-
 		textField_AuthorName = new JTextField();
 		textField_AuthorName.setBounds(227, 119, 175, 34);
 		contentPane.add(textField_AuthorName);
@@ -142,11 +121,44 @@ public class AddBook extends JFrame implements Serializable {
 		ErrTextField = new JTextField();
 		ErrTextField.setBackground(new Color(153, 204, 255));
 		ErrTextField.setText("Please complete form");
-		ErrTextField.setBounds(196, 284, 182, 26);
+		ErrTextField.setBounds(227, 320, 182, 26);
 		contentPane.add(ErrTextField);
 		ErrTextField.setVisible(false);
 		ErrTextField.setColumns(10);
+
+		JLabel photolabel = new JLabel("Photo File Name");
+		photolabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		photolabel.setBounds(40, 235, 118, 34);
+		contentPane.add(photolabel);
+
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(227, 239, 175, 34);
+		contentPane.add(textField);
+
+		JButton btnCheckPhoto = new JButton("Choose Photo");
+		btnCheckPhoto.setBounds(237, 278, 155, 34);
+		contentPane.add(btnCheckPhoto);
+		
+		btnCheckPhoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!(textField.getText().equals(""))) {
+					try {
+					Image libraryimg = new ImageIcon(this.getClass().getResource("/image/"+textField.getText())).getImage();
+					lblNewLabel_1.setIcon(new ImageIcon(libraryimg));
+					contentPane.add(lblNewLabel_1);
+					imageFile="/image/"+textField.getText();
+					}
+					catch (Exception ex) {
+						ErrTextField.setVisible(true);
+					}
+					
+				}
+			}
+		});
 	}
+
+		
 
 	public void loadFile() {
 		try {
@@ -187,5 +199,4 @@ public class AddBook extends JFrame implements Serializable {
 		}
 
 	}
-
 }
