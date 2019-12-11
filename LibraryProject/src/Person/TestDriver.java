@@ -3,6 +3,14 @@ import Books.Book;
 import Books.BookCollection;
 import helpers.Sorting;
 
+/**
+ *@Specifications: Test driver class that ensures the correctness of other classes
+ *@Param: none
+ *@Precondition: none
+ *@Postcondition: Throws an error if there is a program in one of the classes
+ *@Exceptions: none
+ *@Throws: none
+ */
 public class TestDriver {
 
 	/**public static void main(String[] args) {
