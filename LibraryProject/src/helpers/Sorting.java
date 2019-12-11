@@ -88,7 +88,7 @@ public class Sorting implements Comparable {
 				n2 = n - n1;
 				bookMergeSortByAuthor(array, first, n1);
 				bookMergeSortByAuthor(array, first + n1, n2);
-				AuthorMerge(array, first, n1, n2);
+				BookMerge(array, first, n1, n2);
 			}
 		}
 

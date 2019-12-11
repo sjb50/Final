@@ -63,7 +63,6 @@ public class BookCollection implements Serializable, Comparable {
 		for (int i = 0; i < size; i++) {
 			if (book.equals(books[i])) {
 				books[i] = null;
-				t
 				--size;
 				manyBooks--;
 				return true;

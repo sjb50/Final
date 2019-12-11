@@ -280,21 +280,20 @@ public class HomeScreen extends JFrame {
 							Book[] listOfBooks = returner.getCheckedOutBooks().popToArray();
 							JComboBox bookToReturn = new JComboBox(listOfBooks);
 							Book returnedBook = (Book) bookToReturn.getSelectedItem();
-							
-							
+
 							JPanel menu = new JPanel();
 							JButton comfirmReturn = new JButton("Confirm");
 							comfirmReturn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
 									Book returnedBook = (Book) bookToReturn.getSelectedItem();
-									returner.returnBook(books,returnedBook);
+									returner.returnBook(books, returnedBook);
 									saveBookFile();
 									savePeopleFile();
 									match.setVisible(false);
 									match.setVisible(true);
 								}
 							});
-							
+
 							menu.setBounds(156, 15, 50, 100);
 							menu.add(bookToReturn);
 							menu.add(comfirmReturn);
@@ -308,10 +307,64 @@ public class HomeScreen extends JFrame {
 					JButton payBtn = new JButton("Pay Fee");
 					payBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					payBtn.setBounds(440, 10, 91, 32);
+					payBtn.setActionCommand(Integer.toString(count));
+					payBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+							int index = Integer.parseInt(e.getActionCommand());
+							Member payer = (Member) members.getPeople()[index];
+							String input = JOptionPane.showInputDialog(contentPane,"\nHow much would you like to pay?");
+							double  payment= Double.parseDouble(input);
+							payer.payFee(payment);
+							savePeopleFile();
+							}
+							catch (Exception ex) {
+								
+							}
+						}
+					});
 
 					JButton lostBtn = new JButton("Lost Book");
 					lostBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					lostBtn.setBounds(440, 50, 192, 32);
+					lostBtn.setActionCommand(Integer.toString(count));
+					lostBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int index = Integer.parseInt(e.getActionCommand());
+							match.setVisible(false);
+							Member returner = (Member) members.getPeople()[index];
+							System.out.println(returner.getCheckedOutBooks().getNumCheckedOut());
+							Book[] listOfBooks = returner.getCheckedOutBooks().popToArray();
+							JComboBox bookToReturn = new JComboBox(listOfBooks);
+							Book returnedBook = (Book) bookToReturn.getSelectedItem();
+
+							JPanel menu = new JPanel();
+							JButton comfirmCharge = new JButton("Confirm");
+							menu.add(comfirmCharge);
+							match.add(menu);
+							menu.setBounds(156, 15, 50, 100);
+							menu.add(bookToReturn);
+							menu.add(comfirmCharge);
+							menu.setBackground(Color.YELLOW);
+							menu.setBounds(156, 15, 269, 105);
+							match.setVisible(true);
+							comfirmCharge.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									Member returner = (Member) members.getPeople()[index];
+									System.out.println(returner);
+									Book lostBook = (Book) bookToReturn.getSelectedItem();
+									returner.charge(books, lostBook);
+
+									saveBookFile();
+									savePeopleFile();
+
+									match.add(menu);
+									match.setVisible(true);
+								}
+
+							});
+						}
+					});
 
 					match.add(lostBtn);
 					match.add(payBtn);
@@ -337,7 +390,6 @@ public class HomeScreen extends JFrame {
 				loadPeopleFile();
 				Book found;
 				switch (s) {
-
 				case "Author":
 					Sorting.bookMergeSortByAuthor(books.getBooks(), 0, books.getManyBooks());
 
@@ -388,11 +440,10 @@ public class HomeScreen extends JFrame {
 						myint = Integer.parseInt(search_textField.getText());
 						System.out.println(myint);
 
-					} catch (Exception e) {
-						System.err.println(e);
-					}
+
 					Member person = (Member) members.searchByMemberId(myint);
 					JTextArea match3 = new JTextArea(person.toString());
+					
 					match3.setBackground(Color.MAGENTA);
 					match3.setMaximumSize(new Dimension(640, 150));
 					match3.setMinimumSize(new Dimension(639, 149));
@@ -403,8 +454,111 @@ public class HomeScreen extends JFrame {
 
 					test.add(match3);
 					test.add(breaker3);
+					JButton returnBtn = new JButton("Return");
+					returnBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					returnBtn.setBounds(540, 10, 91, 32);
+					returnBtn.setActionCommand(Integer.toString(person.getId()));
+					JButton lostBtn = new JButton("Lost Book");
+					lostBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					lostBtn.setBounds(440, 50, 192, 32);
+					lostBtn.setActionCommand(Integer.toString(person.getId()));
+					match3.add(lostBtn);
+					JButton payBtn = new JButton("Pay Fee");
+					payBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					payBtn.setBounds(440, 10, 91, 32);
+					payBtn.setActionCommand(Integer.toString(person.getId()));
+					match3.add(payBtn);
+					payBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+							int index = Integer.parseInt(e.getActionCommand());
+							Member payer = (Member) members.searchByMemberId(index);
+							String input = JOptionPane.showInputDialog(contentPane,"\nHow much would you like to pay?");
+							double  payment= Double.parseDouble(input);
+							payer.payFee(payment);
+							savePeopleFile();
+							}
+							catch (Exception ex) {	
+							}
+						}
+					});
+					lostBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int index = Integer.parseInt(e.getActionCommand());
+							match3.setVisible(false);
+							Member returner = (Member) members.searchByMemberId(index);
+							System.out.println(returner.getCheckedOutBooks().getNumCheckedOut());
+							Book[] listOfBooks = returner.getCheckedOutBooks().popToArray();
+							JComboBox bookToReturn = new JComboBox(listOfBooks);
+							Book returnedBook = (Book) bookToReturn.getSelectedItem();
+
+							JPanel menu = new JPanel();
+							JButton comfirmCharge = new JButton("Confirm");
+							menu.add(comfirmCharge);
+							match3.add(menu);
+							menu.setBounds(156, 15, 50, 100);
+							menu.add(bookToReturn);
+							menu.add(comfirmCharge);
+							menu.setBackground(Color.YELLOW);
+							menu.setBounds(156, 15, 269, 105);
+							match3.setVisible(true);
+							comfirmCharge.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									System.out.println(returner);
+									Book lostBook = (Book) bookToReturn.getSelectedItem();
+									returner.charge(books, lostBook);
+
+									saveBookFile();
+									savePeopleFile();
+
+									match3.add(menu);
+									match3.setVisible(true);
+								}
+								
+							});
+							test.setVisible(true);
+						}
+					});
+					match3.add(returnBtn);
+					returnBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int index = Integer.parseInt(e.getActionCommand());
+							match3.setVisible(false);
+							Member returner = (Member) members.searchByMemberId(index);
+							System.out.println(returner.getCheckedOutBooks().getNumCheckedOut());
+							Book[] listOfBooks = returner.getCheckedOutBooks().popToArray();
+							JComboBox bookToReturn = new JComboBox(returner.getCheckedOutBooks().popToArray());
+							Book returnedBook = (Book) bookToReturn.getSelectedItem();
+
+							JPanel menu = new JPanel();
+							JButton comfirmReturn = new JButton("Confirm");
+							menu.add(bookToReturn);
+							menu.add(comfirmReturn);
+							comfirmReturn.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									Book returnedBook = (Book) bookToReturn.getSelectedItem();
+									returner.returnBook(books, returnedBook);
+									saveBookFile();
+									savePeopleFile();
+									match3.setVisible(false);
+									match3.setVisible(true);
+								}
+							});
+							
+							menu.setBounds(156, 15, 50, 100);
+							menu.add(bookToReturn);
+							menu.add(comfirmReturn);
+							menu.setBackground(Color.YELLOW);
+							menu.setBounds(156, 15, 269, 105);
+							match3.add(menu);
+							match3.setVisible(true);
+						}
+					});
+					} catch (Exception e) {
+						System.err.println(e);
+					}
+					test.setVisible(true);
 				}
-				test.setVisible(true);
 			}
 
 		});

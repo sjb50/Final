@@ -116,7 +116,7 @@ public class Member extends Person implements Serializable{
 	 * @Throws:none
 	 */
 	public void payFee(double payment) {
-	  fees=-payment;
+	  fees-=payment;
 	}
 	
 	/**

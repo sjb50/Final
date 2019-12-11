@@ -58,13 +58,13 @@ public class CheckedOutBooks implements Serializable{
 	protected boolean remove(BookCollection collection,Book book) {
 		Sorting.bookMergeSort(collection.getBooks(),0,collection.getManyBooks());
 		Book bookInCollection = collection.SearchByBook(book);
-		if (bookInCollection!=null) {
+		if (bookInCollection!=null) 
+			bookInCollection.setCheckOut(false);
 		BookNode preCursor = head;
 		BookNode cursor = head.getLink();
 		if (head.getData().equals(book)) {
 			head=head.getLink();
 			numCheckedOut--;
-			bookInCollection.setCheckOut(false);
 			return true;
 		}
 		while (cursor.getLink()!=null) {
@@ -77,7 +77,7 @@ public class CheckedOutBooks implements Serializable{
 			preCursor=cursor;
 			cursor=cursor.getLink();
 		}
-		}
+		//}
 		return false;
 	}
 	/**
