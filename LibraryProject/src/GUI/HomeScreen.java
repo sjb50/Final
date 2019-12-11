@@ -231,10 +231,10 @@ public class HomeScreen extends JFrame {
 								if (checkerOut != null) {
 
 									checkerOut.checkOut(books.getBooks()[new Integer(e.getActionCommand())]);
-									
+
 									System.out.println(checkerOut);
 									savePeopleFile();
-									
+
 								}
 								saveBookFile();
 							}
@@ -248,7 +248,7 @@ public class HomeScreen extends JFrame {
 				}
 				test.setVisible(true);
 			}
-			
+
 		});
 
 		memberList_btn.addActionListener(new ActionListener() {
@@ -260,7 +260,7 @@ public class HomeScreen extends JFrame {
 					Member person = (Member) members.getPeople()[count];
 					JTextArea match = new JTextArea(person.toString());
 					match.setBackground(Color.pink);
-	
+
 					match.setMinimumSize(new Dimension(639, 149));
 
 					JPanel breaker = new JPanel();
@@ -273,43 +273,57 @@ public class HomeScreen extends JFrame {
 					returnBtn.setActionCommand(Integer.toString(count));
 					returnBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							int index=Integer.parseInt(e.getActionCommand());
+							int index = Integer.parseInt(e.getActionCommand());
 							match.setVisible(false);
-							Member returner = (Member)members.getPeople()[index];
-							
-							JList bookToReturn = new JList();
+							Member returner = (Member) members.getPeople()[index];
+							System.out.println(returner.getCheckedOutBooks().getNumCheckedOut());
+							Book[] listOfBooks = returner.getCheckedOutBooks().popToArray();
+							JComboBox bookToReturn = new JComboBox(listOfBooks);
+							Book returnedBook = (Book) bookToReturn.getSelectedItem();
 							
 							
 							JPanel menu = new JPanel();
+							JButton comfirmReturn = new JButton("Confirm");
+							comfirmReturn.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									Book returnedBook = (Book) bookToReturn.getSelectedItem();
+									returner.returnBook(books,returnedBook);
+									saveBookFile();
+									savePeopleFile();
+									match.setVisible(false);
+									match.setVisible(true);
+								}
+							});
+							
+							menu.setBounds(156, 15, 50, 100);
+							menu.add(bookToReturn);
+							menu.add(comfirmReturn);
 							menu.setBackground(Color.YELLOW);
-							menu.setBounds(206, 15, 169, 105);
+							menu.setBounds(156, 15, 269, 105);
 							match.add(menu);
 							match.setVisible(true);
 						}
 					});
-					
+
 					JButton payBtn = new JButton("Pay Fee");
 					payBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					payBtn.setBounds(440, 10, 91, 32);
-					
+
 					JButton lostBtn = new JButton("Lost Book");
 					lostBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					lostBtn.setBounds(440, 50, 192, 32);
-					
+
 					match.add(lostBtn);
 					match.add(payBtn);
 					match.add(returnBtn);
-					
-					
+
 					test.add(match);
 					test.add(breaker);
 				}
 				test.setVisible(true);
 			}
-			
+
 		});
-		
-	
 
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

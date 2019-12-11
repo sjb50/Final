@@ -126,6 +126,26 @@ public class BookCollection implements Serializable, Comparable {
 		return null;
 	}
 
+	public Book SearchByBook(Book book) {
+		int first = 0;
+		int last = manyBooks;
+		int middle = (first + last) / 2;
+		while (first != last) {
+			System.out.println("here");
+			if (book.equals(books[middle])) {
+				return books[middle];
+			}
+			if (book.compareTo(books[middle]) > 0) {
+				first = middle+1;
+				middle = (first + last) / 2;
+			} else {
+				last = middle-1;
+				middle = (first + last) / 2;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * @Specifications: Increased the capacity of the array where the collection is
 	 *                  stored.

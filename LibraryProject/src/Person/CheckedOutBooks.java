@@ -4,6 +4,8 @@ package Person;
 import java.io.Serializable;
 
 import Books.Book;
+import Books.BookCollection;
+import helpers.Sorting;
 
 /**
  * @author sjb19
@@ -11,6 +13,7 @@ import Books.Book;
  */
 public class CheckedOutBooks implements Serializable{
 	private BookNode head;
+	private int numCheckedOut;
 	/**
 	 * @Specifications: Constructor that sets the value of the instance variable
 	 * @Param: none
@@ -21,6 +24,7 @@ public class CheckedOutBooks implements Serializable{
 	 */
 	public CheckedOutBooks(){
 		head=new BookNode();
+		numCheckedOut=0;
 	}
 	/**
 	 * @Specifications: method that adds a book to the books the member checks out
@@ -34,11 +38,13 @@ public class CheckedOutBooks implements Serializable{
 		if (head==null) {
 			head = new BookNode(book);
 			head.setLink(null);
+			numCheckedOut++;
 		}
 		else {
 			BookNode newBook = new BookNode(book);
 			newBook.setLink(head);
 			head=newBook;
+			numCheckedOut++;
 		}
 	}
 	/**
@@ -49,20 +55,28 @@ public class CheckedOutBooks implements Serializable{
 	 * @Exceptions: none
 	 * @Throws: none
 	 */
-	protected boolean remove(Book book) {
+	protected boolean remove(BookCollection collection,Book book) {
+		Sorting.bookMergeSort(collection.getBooks(),0,collection.getManyBooks());
+		Book bookInCollection = collection.SearchByBook(book);
+		if (bookInCollection!=null) {
 		BookNode preCursor = head;
 		BookNode cursor = head.getLink();
 		if (head.getData().equals(book)) {
 			head=head.getLink();
+			numCheckedOut--;
+			bookInCollection.setCheckOut(false);
 			return true;
 		}
 		while (cursor.getLink()!=null) {
 			if (cursor.getData().equals(book)) {
 				preCursor.setLink(cursor.getLink());
+				numCheckedOut--;
+				bookInCollection.setCheckOut(false);
 				return true;
 			}
 			preCursor=cursor;
 			cursor=cursor.getLink();
+		}
 		}
 		return false;
 	}
@@ -74,6 +88,24 @@ public class CheckedOutBooks implements Serializable{
 	 * @Exceptions: none
 	 * @Throws: none
 	 */
+	public Book[] popToArray() {
+		Book[] list =new Book[numCheckedOut];
+		BookNode cursor = head;
+		int count=0;
+		while (cursor.getData()!=null) {
+			list[count]=cursor.getData();
+			cursor=cursor.getLink();
+			count++;
+		}
+		return list;
+	}
+	
+	public int getNumCheckedOut() {
+		return numCheckedOut;
+	}
+	public void setNumCheckedOut(int numCheckedOut) {
+		this.numCheckedOut = numCheckedOut;
+	}
 	public String readAll() {
 		String read = "";
 		BookNode cursor = head;

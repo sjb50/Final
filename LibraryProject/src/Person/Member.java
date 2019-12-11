@@ -27,6 +27,10 @@ public class Member extends Person implements Serializable{
 		books = new CheckedOutBooks();
 		this.fees = 0;
 	}
+	
+	public CheckedOutBooks getCheckedOutBooks() {
+		return books;
+	}
 
 	/**
 	 * @Specifications: Getters and setters of the instance variables
@@ -77,8 +81,8 @@ public class Member extends Person implements Serializable{
 	 * @Exceptions:none
 	 * @Throws:none
 	 */
-	public boolean returnBook(Book book) {
-		if (books.remove(book)) {
+	public boolean returnBook(BookCollection collection,Book book) {
+		if (books.remove(collection,book)) {
 			book.setCheckOut(false);
 			return true;
 		}
@@ -98,7 +102,7 @@ public class Member extends Person implements Serializable{
 
 	public void charge(BookCollection collection, Book book) {
 		if (collection.remove(book)) {
-			books.remove(book);
+			books.remove(collection,book);
 			fees += 10;
 		}
 	}
@@ -112,7 +116,6 @@ public class Member extends Person implements Serializable{
 	 * @Throws:none
 	 */
 	public void payFee(double payment) {
-		
 	  fees=-payment;
 	}
 	
