@@ -21,38 +21,73 @@ public class Member extends Person implements Serializable{
 		this.books = new CheckedOutBooks();
 		this.fees = 0;
 	}
-
+	/**
+	 *@Specifications: Three arguments constructor that sets and save the instance variable
+	 *@Param: takes three string argument
+	 *@Precondition: the instance variables must exist
+	 *@Postcondition: sets and save the value of the instance variables
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public Member(String name, String contact, int member) {
 		super(name, contact);
 		books = new CheckedOutBooks();
 		this.fees = 0;
 	}
-	
+	/**
+	 *@Specifications: Getter method for the instance variable checkedOutBooks
+	 *@Param: none
+	 *@Precondition: the instance variable must exist
+	 *@Postcondition: returns the value of the instance variable
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public CheckedOutBooks getCheckedOutBooks() {
 		return books;
 	}
 
 	/**
-	 * @Specifications: Getters and setters of the instance variables
-	 * @Param: getters don't get parameters, the Setters get one parameter of the type of the instance variable
-	 * @Precondition: the instance variables must exist
-	 * @Postcondition: Getters return the value of the instance variable, the setters set the value of the instance variable
-	 * @Exceptions: none
-	 * @Throws:none
+	 *@Specifications: getter method that returns the value of the instance variable fees
+	 *@Param: none
+	 *@Precondition: the instance variable must exist
+	 *@Postcondition: returns the value of the instance variable
+	 *@Exceptions: none
+	 *@Throws: none
 	 */
 	
 	public double getFees() {
 		return fees;
 	}
-
+	/**
+	 *@Specifications: setter methof for the instance variable fees
+	 *@Param: takes a double argument
+	 *@Precondition: the instance variable must exist
+	 *@Postcondition: sets the value of the instance variable
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public void setFees(double fees) {
 		this.fees = fees;
 	}
-
+	/**
+	 *@Specifications: Getter method for the instance variable book
+	 *@Param: none
+	 *@Precondition: the instance variable must exist
+	 *@Postcondition: returns the value of the instance variable
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public CheckedOutBooks getBook() {
 		return books;
 	}
-
+	/**
+	 *@Specifications: Setter method for the instance variable book
+	 *@Param: takes a CheckedOutBooks argument
+	 *@Precondition: the instance variable must exist
+	 *@Postcondition: set the value of the instanve variable
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public void setBook(CheckedOutBooks book) {
 		this.books = book;
 	}
@@ -151,11 +186,15 @@ public class Member extends Person implements Serializable{
 	public String readCheckedOut() {
 		return books.readAll();
 	}
-
-	@Override
+	/**
+	 *@Specifications: toString method that returns the information of the member
+	 *@Param: none
+	 *@Precondition: the member must exist
+	 *@Postcondition: returns the information of the member
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public String toString() {
 		return (super.toString()+"\nFees: "+getFees()+"\n\nCheckedOutBooks: " +readCheckedOut());
-	}
-
-	
+	}	
 }
