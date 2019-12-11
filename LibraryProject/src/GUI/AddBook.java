@@ -15,6 +15,8 @@ import Person.PersonCollection;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -82,7 +85,9 @@ public class AddBook extends JFrame implements Serializable {
 		contentPane.add(Library_lbl);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(40, 284, 146, 109);
+		lblNewLabel_1.setForeground (Color.WHITE);
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setBounds(40, 299, 146, 109);
 		contentPane.add(lblNewLabel_1);
 
 		JButton btnSubmit = new JButton("Submit");
@@ -93,19 +98,23 @@ public class AddBook extends JFrame implements Serializable {
 				if (textField_TitleName.getText().equals("") || textField_AuthorName.getText().equals("")
 						|| imageFile.equals("")) {
 					ErrTextField.setVisible(true);
+					
 				} else {
-					ErrTextField.setVisible(true);
+					ErrTextField.setVisible(false);
 					Book newBook = new Book(textField_TitleName.getText(), textField_AuthorName.getText(), imageFile);
 					books.add(newBook);
 					saveFile();
 					System.out.println("\n" + newBook);
+					
 				}
+				setVisible(false);
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 
-		JLabel displayLbl = new JLabel("Display");
+		JLabel displayLbl = new JLabel("");
 		displayLbl.setBackground(new Color(102, 153, 51));
-		displayLbl.setBounds(40, 239, 146, 154);
+		displayLbl.setBounds(40, 239, 146, 34);
 		contentPane.add(displayLbl);
 
 		textField_AuthorName = new JTextField();
@@ -152,8 +161,12 @@ public class AddBook extends JFrame implements Serializable {
 					catch (Exception ex) {
 						ErrTextField.setVisible(true);
 					}
+				
+					
 					
 				}
+				
+				
 			}
 		});
 	}

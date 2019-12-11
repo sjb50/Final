@@ -108,6 +108,8 @@ public class Login extends JFrame implements Serializable {
 					loginFailLbl.setVisible(true);
 				}
 				loginFailLbl.setVisible(true);
+				setVisible(false);
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 		btnSignIn.setBounds(406, 249, 112, 36);

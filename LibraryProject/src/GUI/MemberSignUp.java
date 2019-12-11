@@ -101,6 +101,8 @@ public class MemberSignUp extends JFrame {
 					member.add(newmember);
 					saveFile();
 					System.out.println(member.readAll());
+					setVisible(false);
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 
 			}
