@@ -186,6 +186,7 @@ public class HomeScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				loadBookFile();
 				test.removeAll();
+				test.setVisible(false);
 				for (int count = 0; count < books.getManyBooks(); count++) {
 					JPanel bookContainer = new JPanel();
 					bookContainer.setMaximumSize(new Dimension(640, 150));
@@ -239,13 +240,15 @@ public class HomeScreen extends JFrame {
 					test.add(breaker);
 					
 				}
-				contentPane.add(scrollPane);
+				test.setVisible(true);
 			}
 		});
 
 		memberList_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				loadPeopleFile();
 				test.removeAll();
+				test.setVisible(false);
 				for (int count = 0; count < members.getManyMembers(); count++) {
 					Member person = (Member) members.getPeople()[count];
 					JTextArea match = new JTextArea(person.toString());
@@ -259,8 +262,8 @@ public class HomeScreen extends JFrame {
 
 					test.add(match);
 					test.add(breaker);
-					contentPane.add(scrollPane);
 				}
+				test.setVisible(true);
 			}
 		});
 	}
