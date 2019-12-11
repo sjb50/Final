@@ -63,6 +63,7 @@ public class BookCollection implements Serializable, Comparable {
 		for (int i = 0; i < size; i++) {
 			if (book.equals(books[i])) {
 				books[i] = null;
+				t
 				--size;
 				manyBooks--;
 				return true;
@@ -110,7 +111,7 @@ public class BookCollection implements Serializable, Comparable {
 		int first = 0;
 		int last = manyBooks;
 		int middle = (first + last) / 2;
-		while (first != last) {
+		while (first < last) {
 			System.out.println("here");
 			if (book.equals(books[middle].getTitle())) {
 				return books[middle];
@@ -130,7 +131,7 @@ public class BookCollection implements Serializable, Comparable {
 		int first = 0;
 		int last = manyBooks;
 		int middle = (first + last) / 2;
-		while (first != last) {
+		while (first < last) {
 			System.out.println("here");
 			if (book.equals(books[middle])) {
 				return books[middle];
