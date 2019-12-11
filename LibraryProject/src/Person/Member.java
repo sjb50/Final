@@ -151,7 +151,7 @@ public class Member extends Person implements Serializable{
 
 	@Override
 	public String toString() {
-		return (super.toString()+"\nFees: "+getFees()+"\nCheckedOutBooks: " +readCheckedOut());
+		return (super.toString()+"\nFees: "+getFees()+"\n\nCheckedOutBooks: " +readCheckedOut());
 	}
 
 	

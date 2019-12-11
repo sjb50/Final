@@ -20,6 +20,7 @@ import java.awt.Image;
 import java.awt.LayoutManager;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.Color;
@@ -247,6 +248,7 @@ public class HomeScreen extends JFrame {
 				}
 				test.setVisible(true);
 			}
+			
 		});
 
 		memberList_btn.addActionListener(new ActionListener() {
@@ -258,19 +260,56 @@ public class HomeScreen extends JFrame {
 					Member person = (Member) members.getPeople()[count];
 					JTextArea match = new JTextArea(person.toString());
 					match.setBackground(Color.pink);
-					match.setMaximumSize(new Dimension(640, 150));
+	
 					match.setMinimumSize(new Dimension(639, 149));
 
 					JPanel breaker = new JPanel();
 					breaker.setBackground(Color.WHITE);
 					breaker.setMaximumSize(new Dimension(640, 10));
 
+					JButton returnBtn = new JButton("Return");
+					returnBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					returnBtn.setBounds(540, 10, 91, 32);
+					returnBtn.setActionCommand(Integer.toString(count));
+					returnBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int index=Integer.parseInt(e.getActionCommand());
+							match.setVisible(false);
+							Member returner = (Member)members.getPeople()[index];
+							
+							JList bookToReturn = new JList();
+							
+							
+							JPanel menu = new JPanel();
+							menu.setBackground(Color.YELLOW);
+							menu.setBounds(206, 15, 169, 105);
+							match.add(menu);
+							match.setVisible(true);
+						}
+					});
+					
+					JButton payBtn = new JButton("Pay Fee");
+					payBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					payBtn.setBounds(440, 10, 91, 32);
+					
+					JButton lostBtn = new JButton("Lost Book");
+					lostBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					lostBtn.setBounds(440, 50, 192, 32);
+					
+					match.add(lostBtn);
+					match.add(payBtn);
+					match.add(returnBtn);
+					
+					
 					test.add(match);
 					test.add(breaker);
 				}
 				test.setVisible(true);
 			}
+			
 		});
+		
+	
 
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

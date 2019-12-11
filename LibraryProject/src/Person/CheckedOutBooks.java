@@ -57,7 +57,7 @@ public class CheckedOutBooks implements Serializable{
 		String read = "";
 		BookNode cursor = head;
 		while (cursor.getLink()!=null) {
-			read+=cursor.getData().toString()+"\n";
+			read+=cursor.getData().toString()+"\n\n";
 			cursor=cursor.getLink();
 		}
 		return read;
