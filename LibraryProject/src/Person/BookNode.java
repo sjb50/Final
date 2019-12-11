@@ -21,20 +21,38 @@ public class BookNode implements Serializable{
 	private BookNode link;
 
 	/**
-	 * @param data
-	 * @param link
+	 * @Specifications: constructor that set the value of the instance variables
+	 * @Param: Book and BookNode arguments
+	 * @Precondition: they must exist
+	 * @Postcondition: sets the value of the instance varible
+	 * @Exceptions: none
+	 * @Throws: none
 	 */
 	public BookNode(Book data, BookNode link) {
 		super();
 		this.data = data;
 		this.link = link;
 	}
-	
+	/**
+	 * @Specifications: one argument constructor that sets the value of the instance variable data
+	 * @Param: takes a Book argument
+	 * @Precondition: the instance variable must exist 
+	 * @Postcondition: sets the value of the instance variable
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public BookNode(Book data) {
 		this.data=data;
 		this.link=null;
 	}
-	
+	/**
+	 * @Specifications: no argument constructor that initialize the instance variables
+	 * @Param: none
+	 * @Precondition: the instance variables must exist
+	 * @Postcondition: set the instance variables to null
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public BookNode() {
 		this.data=null;
 		this.link=null;
@@ -84,7 +102,14 @@ public class BookNode implements Serializable{
 		this.link = link;
 	}
 
-	@Override
+	/**
+	 * @Specifications: toString method that returns the information of the class
+	 * @Param: none
+	 * @Precondition: the instance variables must exist
+	 * @Postcondition: returns the information of each instance variable
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public String toString() {
 		return "BookNode [data=" + data + ", link=" + link + "]";
 	}

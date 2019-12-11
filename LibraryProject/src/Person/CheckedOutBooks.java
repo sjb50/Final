@@ -1,11 +1,4 @@
-/**
- *@Specifications:
- *@Param:
- *@Precondition:
- *@Postcondition:
- *@Exceptions:
- *@Throws:
- */
+
 package Person;
 
 import java.io.Serializable;
@@ -18,11 +11,25 @@ import Books.Book;
  */
 public class CheckedOutBooks implements Serializable{
 	private BookNode head;
-	
+	/**
+	 * @Specifications: Constructor that sets the value of the instance variable
+	 * @Param: none
+	 * @Precondition: the instance variable must exist
+	 * @Postcondition: set the value of the instance variable
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public CheckedOutBooks(){
 		head=new BookNode();
 	}
-	
+	/**
+	 * @Specifications: method that adds a book to the books the member checks out
+	 * @Param: takes a Book argument
+	 * @Precondition: the member and book must exist
+	 * @Postcondition: adds the book of the collection of the member
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	protected void add(Book book) {
 		if (head==null) {
 			head = new BookNode(book);
@@ -34,7 +41,14 @@ public class CheckedOutBooks implements Serializable{
 			head=newBook;
 		}
 	}
-	
+	/**
+	 * @Specifications: method that removes a book from the collection of the member
+	 * @Param: takes a book argument
+	 * @Precondition: the member and book must exist
+	 * @Postcondition: removes the book from the collection of the member
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	protected boolean remove(Book book) {
 		BookNode preCursor = head;
 		BookNode cursor = head.getLink();
@@ -52,7 +66,14 @@ public class CheckedOutBooks implements Serializable{
 		}
 		return false;
 	}
-	
+	/**
+	 * @Specifications: method that reads all the books contain in the collection of a specific member
+	 * @Param: none
+	 * @Precondition: the member must exist
+	 * @Postcondition: reads the book in the collection of the member
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public String readAll() {
 		String read = "";
 		BookNode cursor = head;
