@@ -105,10 +105,9 @@ public class AddBook extends JFrame implements Serializable {
 					books.add(newBook);
 					saveFile();
 					System.out.println("\n" + newBook);
-					
+					setVisible(false);
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
-				setVisible(false);
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 
