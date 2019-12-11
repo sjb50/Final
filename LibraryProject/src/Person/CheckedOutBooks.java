@@ -81,12 +81,12 @@ public class CheckedOutBooks implements Serializable{
 		return false;
 	}
 	/**
-	 * @Specifications: method that reads all the books contain in the collection of a specific member
-	 * @Param: none
-	 * @Precondition: the member must exist
-	 * @Postcondition: reads the book in the collection of the member
-	 * @Exceptions: none
-	 * @Throws: none
+	 *@Specifications: method that returns the list of books checked out by a member
+	 *@Param: none
+	 *@Precondition: the member must exist
+	 *@Postcondition: returns the list of books checked out by the member
+	 *@Exceptions: none
+	 *@Throws: none
 	 */
 	public Book[] popToArray() {
 		Book[] list =new Book[numCheckedOut];
@@ -99,13 +99,37 @@ public class CheckedOutBooks implements Serializable{
 		}
 		return list;
 	}
-	
+	/**
+	 *@Specifications: Getter method for the NumCheckOut instance variable
+	 *@Param: none
+	 *@Precondition: the instance variable must exist
+	 *@Postcondition: returns the value of the instance variable
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public int getNumCheckedOut() {
 		return numCheckedOut;
 	}
+	/**
+	 *@Specifications: Setter method for the instance variable numCheckOut
+	 *@Param: takes an interger argument
+	 *@Precondition: The instance variable must be existant
+	 *@Postcondition: Sets the value of the instance variable
+	 *@Exceptions: none
+	 *@Throws: none
+	 */
 	public void setNumCheckedOut(int numCheckedOut) {
 		this.numCheckedOut = numCheckedOut;
 	}
+	
+	/**
+	 * @Specifications: method that reads all the books contain in the collection of a specific member
+	 * @Param: none
+	 * @Precondition: the member must exist
+	 * @Postcondition: reads the book in the collection of the member
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public String readAll() {
 		String read = "";
 		BookNode cursor = head;
