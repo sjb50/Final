@@ -228,11 +228,14 @@ public class HomeScreen extends JFrame {
 												+ "\nEnter Member ID");
 								Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
 								if (checkerOut != null) {
+
 									checkerOut.checkOut(books.getBooks()[new Integer(e.getActionCommand())]);
+									
 									System.out.println(checkerOut);
-									saveBookFile();
 									savePeopleFile();
+									
 								}
+								saveBookFile();
 							}
 
 						});
@@ -441,7 +444,7 @@ public class HomeScreen extends JFrame {
 			FileOutputStream file = new FileOutputStream(memberCollectionFile);
 			ObjectOutputStream out = new ObjectOutputStream(file);
 			// Method for serialization of object
-			out.writeObject(memberCollectionFile);
+			out.writeObject(members);
 			out.close();
 			file.close();
 			System.out.println("Object has been serialized");
