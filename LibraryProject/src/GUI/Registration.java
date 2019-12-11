@@ -25,6 +25,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.JTextArea;
 
 public class Registration extends JFrame implements Serializable {
@@ -44,7 +45,8 @@ public class Registration extends JFrame implements Serializable {
 	 */
 	public Registration() {
 		loadFile();
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
 		setBounds(100, 100, 424, 460);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -108,8 +110,10 @@ public class Registration extends JFrame implements Serializable {
 					saveFile();
 					System.out.println(collection.readAll());
 					JOptionPane.showInputDialog("Here is your Id.\n", newEmployee.getId());
-					
+					setVisible(false);
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
+				
 				
 			}
 		});

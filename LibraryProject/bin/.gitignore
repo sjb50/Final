@@ -1,5 +1,12 @@
+/.classpath
+/.project
+/Books/
 /GUI/
 /Person/
+/helpers/
 /image/
+<<<<<<< HEAD
 /Books/
 /helpers/
+=======
+>>>>>>> branch 'master' of https://github.com/sjb50/Final.git
