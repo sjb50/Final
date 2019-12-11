@@ -194,7 +194,6 @@ public class HomeScreen extends JFrame {
 					bookContainer.setMaximumSize(new Dimension(640, 150));
 					bookContainer.setMinimumSize(new Dimension(639, 149));
 					bookContainer.setBackground(Color.lightGray);
-
 					JTextArea match = new JTextArea(books.getBooks()[count].toString());
 					Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
 							.getImage();
@@ -238,8 +237,10 @@ public class HomeScreen extends JFrame {
 								if (checkerOut != null) {
 
 									checkerOut.checkOut(books.getBooks()[new Integer(e.getActionCommand())]);
+									//bookContainer.remove(comp);
 
 									System.out.println(checkerOut);
+									saveBookFile();
 									savePeopleFile();
 
 								}

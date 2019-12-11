@@ -153,7 +153,8 @@ public class AddBook extends JFrame implements Serializable {
 				if (!(textField.getText().equals(""))) {
 					try {
 					Image libraryimg = new ImageIcon(this.getClass().getResource("/image/"+textField.getText())).getImage();
-					lblNewLabel_1.setIcon(new ImageIcon(libraryimg));
+					Image newimg = libraryimg.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+					lblNewLabel_1.setIcon(new ImageIcon(newimg));
 					contentPane.add(lblNewLabel_1);
 					imageFile="/image/"+textField.getText();
 					}
