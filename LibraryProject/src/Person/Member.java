@@ -1,8 +1,10 @@
 package Person;
+import java.io.Serializable;
+
 import Books.Book;
 import Books.BookCollection;
 
-public class Member extends Person {
+public class Member extends Person implements Serializable{
 	private double fees;
 	private CheckedOutBooks books;
 	

@@ -111,21 +111,21 @@ public class PersonCollection implements Cloneable, Serializable{
 	 *@Throws:
 	 */
 	
-	public boolean searchByName(String name) {
+	public Person searchByName(String name) {
 		try {
-			for(int i = 0; i < people.length; i++) {
+			for(int i = 0; i < this.manyMembers; i++) {
 				if (people[i].getName().equalsIgnoreCase(name)) {
 					System.out.println("This is the member with the name " + name);
 					System.out.println(people[i]);
-					return true;
+					return people[i];
 				}
 			}
 		}catch(NullPointerException e) {
 			System.err.println("Unable to locate the member with the name " + name);
 		}
 		System.out.println("member not found!");
+		return null;
 		
-		return false;
 	}
 	
 	/**
@@ -159,19 +159,19 @@ public class PersonCollection implements Cloneable, Serializable{
 	 *@Exceptions:
 	 *@Throws:
 	 */
-	public boolean searchByMemberId(int id) {
+	public Person searchByMemberId(int id) {
 		try {
-			for (int i = 0; i < people.length; i++) {
+			for (int i = 0; i < this.manyMembers; i++) {
 				if (people[i].getId() == id) {
 					System.out.println("Here is the member with this memberId");
 					System.out.println(people[i]);
-					return true;
+					return people[i];
 				}
 			}
 		}catch (NullPointerException e) {
 			System.err.println("Unable to locate a member with this memberId");
 		}
-		return false;
+		return null;
 	}
 	
 	public Person[] getPeople() {

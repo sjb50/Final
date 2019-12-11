@@ -28,7 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 public class Registration extends JFrame implements Serializable {
-	String peopleFile = "peopleCollection.txt";
+	String peopleFile = "EmployeeCollection.txt";
 	PersonCollection collection = new PersonCollection();
 	private JPanel contentPane;
 	private JTextField NametextField;

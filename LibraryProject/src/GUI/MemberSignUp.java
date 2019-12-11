@@ -27,7 +27,7 @@ import javax.swing.JButton;
 
 public class MemberSignUp extends JFrame {
 
-	String memberCollectionFile = "memberCollection.text";
+	String memberCollectionFile = "memberCollection.txt";
 	PersonCollection member = new PersonCollection();
 
 	private JPanel contentPane;

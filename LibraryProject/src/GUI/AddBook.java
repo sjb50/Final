@@ -77,7 +77,7 @@ public class AddBook extends JFrame implements Serializable {
 
 		JLabel Library_lbl = new JLabel("");
 		Library_lbl.setBounds(161, 0, 126, 118);
-		Image libraryimg = new ImageIcon(this.getClass().getResource("/image/Books-1-icon.png")).getImage();
+		Image libraryimg = new ImageIcon(this.getClass().getResource("/image/image.png")).getImage();
 		Library_lbl.setIcon(new ImageIcon(libraryimg));
 		contentPane.add(Library_lbl);
 

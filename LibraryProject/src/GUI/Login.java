@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class Login extends JFrame implements Serializable {
-	static String peopleFile = "peopleCollection.txt";
+	static String peopleFile = "EmployeeCollection.txt";
 	PersonCollection people = new PersonCollection();
 	private JPanel contentPane;
 	private JTextField userId_textField;
@@ -52,6 +52,7 @@ public class Login extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public Login() {
+		loadFile();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 585, 433);
 		contentPane = new JPanel();
@@ -78,7 +79,6 @@ public class Login extends JFrame implements Serializable {
 		Icon_lbl.setIcon(new ImageIcon(img));
 		contentPane.add(Icon_lbl);
 
-		;
 
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -91,7 +91,6 @@ public class Login extends JFrame implements Serializable {
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					loadFile();
 					int username = Integer.parseInt(userId_textField.getText());
 					String password = password_textField.getText();
 					for (int count = 0; count < people.getManyMembers(); count++) {
@@ -105,6 +104,7 @@ public class Login extends JFrame implements Serializable {
 						}
 					}
 				} catch (Exception ex) {
+					System.err.println(ex);
 					loginFailLbl.setVisible(true);
 				}
 				loginFailLbl.setVisible(true);

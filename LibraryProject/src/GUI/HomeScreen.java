@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
@@ -19,6 +20,8 @@ import java.awt.Image;
 import java.awt.LayoutManager;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
@@ -30,9 +33,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.border.EtchedBorder;
 
-import Books.BookCollection;
+import Books.*;
 import Person.*;
-import Person.PersonCollection;
+import Person.*;
+import helpers.*;
 
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -54,8 +58,8 @@ import java.awt.ScrollPane;
 import java.awt.Panel;
 
 public class HomeScreen extends JFrame {
-	String memberCollectionFile = "memberCollection.text";
-	PersonCollection member = new PersonCollection();
+	String memberCollectionFile = "memberCollection.txt";
+	PersonCollection members = new PersonCollection();
 	String BookCollectionFile = "books.txt";
 	BookCollection books = new BookCollection();
 	private JPanel contentPane;
@@ -69,6 +73,8 @@ public class HomeScreen extends JFrame {
 	 * @throws IOException
 	 */
 	public HomeScreen() throws IOException {
+		loadBookFile();
+		loadPeopleFile();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 747, 747);
 		contentPane = new JPanel();
@@ -80,7 +86,7 @@ public class HomeScreen extends JFrame {
 
 		JLabel Library_lbl = new JLabel("");
 		Library_lbl.setBounds(286, -46, 148, 147);
-		Image img = new ImageIcon(this.getClass().getResource("/image/Books-1-icon.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/image/image.png")).getImage();
 		Library_lbl.setIcon(new ImageIcon(img));
 		contentPane.add(Library_lbl);
 
@@ -139,10 +145,7 @@ public class HomeScreen extends JFrame {
 		addBook_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 
 		JButton bookCollection_btn = new JButton("Book Collection");
-		bookCollection_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+
 		bookCollection_btn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		bookCollection_btn.setBounds(170, 11, 176, 33);
 		panel.add(bookCollection_btn);
@@ -169,7 +172,7 @@ public class HomeScreen extends JFrame {
 		contentPane.add(btnNewButton);
 
 		test = new JPanel();
-		test.setSize(new Dimension(700, 700));
+		//test.setSize(new Dimension(700, 700));
 
 		JScrollPane scrollPane = new JScrollPane(test, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -177,6 +180,7 @@ public class HomeScreen extends JFrame {
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBounds(36, 215, 669, 405);
 		contentPane.add(scrollPane);
+	
 
 		bookCollection_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -207,6 +211,7 @@ public class HomeScreen extends JFrame {
 					breaker.setMaximumSize(new Dimension(640, 10));
 					bookContainer.add(match);
 					bookContainer.add(photo);
+
 					if (!(books.getBooks()[count].isCheckOut())) {
 						JButton checkout = new JButton("Checkout");
 						checkout.setActionCommand(Integer.toString(count));
@@ -214,28 +219,35 @@ public class HomeScreen extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								System.out.println(e.getActionCommand());
 								JPanel checkOutPage = new JPanel();
-								checkOutPage.setSize(new Dimension(50,50));
+								checkOutPage.setSize(new Dimension(50, 50));
 								checkOutPage.setVisible(true);
-								
+								String input = JOptionPane.showInputDialog(contentPane,
+										books.getBooks()[new Integer(e.getActionCommand())].toString()
+												+ "\nEnter Member ID");
+								Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
+								if (checkerOut != null) {
+									checkerOut.checkOut(books.getBooks()[new Integer(e.getActionCommand())]);
+									saveBookFile();
+									savePeopleFile();
+								}
 							}
+
 						});
 						bookContainer.add(checkout);
-
 					}
-
 					test.add(bookContainer);
-
 					test.add(breaker);
+					
 				}
+				contentPane.add(scrollPane);
 			}
 		});
 
 		memberList_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loadPeopleFile();
 				test.removeAll();
-				for (int count = 0; count < member.getManyMembers(); count++) {
-					Member person = (Member) member.getPeople()[count];
+				for (int count = 0; count < members.getManyMembers(); count++) {
+					Member person = (Member) members.getPeople()[count];
 					JTextArea match = new JTextArea(person.toString());
 					match.setBackground(Color.pink);
 					match.setMaximumSize(new Dimension(640, 150));
@@ -247,10 +259,31 @@ public class HomeScreen extends JFrame {
 
 					test.add(match);
 					test.add(breaker);
+					contentPane.add(scrollPane);
 				}
 			}
 		});
 	}
+
+	/**
+	 *@Specifications:
+	 *@Param:
+	 *@Precondition:
+	 *@Postcondition:
+	 *@Throws:
+	 */
+	private void loadMemberFile() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @Specifications:
+	 * @Param:
+	 * @Precondition:
+	 * @Postcondition:
+	 * @Throws:
+	 */
 
 	public void loadPeopleFile() {
 		try {
@@ -258,7 +291,7 @@ public class HomeScreen extends JFrame {
 			FileInputStream file = new FileInputStream(memberCollectionFile);
 			ObjectInputStream in = new ObjectInputStream(file);
 			// Method for deserialization of object
-			member = (PersonCollection) in.readObject();
+			members = (PersonCollection) in.readObject();
 			in.close();
 			file.close();
 
@@ -294,4 +327,41 @@ public class HomeScreen extends JFrame {
 		}
 	}
 
+	public void saveBookFile() {
+		try {
+			// Saving of object in a file
+			FileOutputStream file = new FileOutputStream(BookCollectionFile);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			// Method for serialization of object
+			out.writeObject(books);
+			out.close();
+			file.close();
+			System.out.println("Object has been serialized");
+
+		}
+
+		catch (IOException ex) {
+			System.out.println(ex);
+		}
+
+	}
+
+	public void savePeopleFile() {
+		try {
+			// Saving of object in a file
+			FileOutputStream file = new FileOutputStream(memberCollectionFile);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			// Method for serialization of object
+			out.writeObject(memberCollectionFile);
+			out.close();
+			file.close();
+			System.out.println("Object has been serialized");
+
+		}
+
+		catch (IOException ex) {
+			System.out.println(ex);
+		}
+
+	}
 }
