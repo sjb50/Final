@@ -98,7 +98,14 @@ public class BookCollection implements Serializable, Comparable {
 		}
 		return null;
 	}
-
+	/**
+	 * @Specifications: SearchByTitle method that re
+	 * @Param: takes a string argument
+	 * @Precondition: none
+	 * @Postcondition: returns the books if found
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public Book SearchByTitle(String book) {
 		int first = 0;
 		int last = manyBooks;
@@ -153,24 +160,49 @@ public class BookCollection implements Serializable, Comparable {
 				System.out.println(books[i]);
 			}
 		}
-
 	}
-
+	/**
+	 * @Specifications: getter method for the instance variable ManyBook
+	 * @Param: none
+	 * @Precondition: the instance variable must exist
+	 * @Postcondition: returns the value of the instance variable
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public int getManyBooks() {
 		return manyBooks;
 	}
-
+	/**
+	 * @Specifications: Getter method for the instance variable Books
+	 * @Param: none
+	 * @Precondition: the instance variable must exist
+	 * @Postcondition: returns the value of the instance variable
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public Book[] getBooks() {
 		return books;
 	}
-
+	/**
+	 * @Specifications: Setter method for the instance variable Books
+	 * @Param: Takes an array of books
+	 * @Precondition: the array and instance variables must exist
+	 * @Postcondition: set the instance variable
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public void setBooks(Book[] books) {
 		this.books = books;
 	}
-
-	@Override
+	/**
+	 * @Specifications: Method that compare two objects
+	 * @Param: takes an object argument
+	 * @Precondition: theu must be existant
+	 * @Postcondition: returns 0
+	 * @Exceptions: none
+	 * @Throws: none
+	 */
 	public int compareTo(Object book) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
