@@ -79,16 +79,16 @@ public class BookCollection implements Serializable, Comparable {
 	 * @Postcondition: returns the book if found.
 	 * @Throws: none
 	 */
-	public Book SearchByAuthor(Book book) {
+	public Book SearchByAuthor(String book) {
 		int first = 0;
 		int last = manyBooks;
 		int middle = (first + last) / 2;
 		while (first < last) {
 			System.out.println(manyBooks);
-			if (book.getAuthor().equals(books[middle].getAuthor())) {
-				return book;
+			if (book.equals(books[middle].getAuthor())) {
+				return books[middle];
 			}
-			if (book.getAuthor().compareTo(books[middle].getAuthor()) > 0) {
+			if (book.compareTo(books[middle].getAuthor()) > 0) {
 				first = middle+1;
 				middle = (first + last) / 2;
 			} else {

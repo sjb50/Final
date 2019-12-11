@@ -373,10 +373,11 @@ public class HomeScreen extends JFrame {
 							});
 						}
 					});
-
+					if (!(person.getCheckedOutBooks().getNumCheckedOut()==0)){
 					match.add(lostBtn);
-					match.add(payBtn);
 					match.add(returnBtn);
+		}
+					match.add(payBtn);
 
 					test.add(match);
 					test.add(breaker);
@@ -401,7 +402,7 @@ public class HomeScreen extends JFrame {
 				case "Author":{
 					Sorting.bookMergeSortByAuthor(books.getBooks(), 0, books.getManyBooks());
 					
-					found = books.SearchByTitle(search_textField.getText());
+					found = books.SearchByAuthor(search_textField.getText());
 					JPanel breaker = new JPanel();
 					breaker.setBackground(Color.BLACK);
 					breaker.setMaximumSize(new Dimension(640, 10));
@@ -419,6 +420,10 @@ public class HomeScreen extends JFrame {
 						photo.setMinimumSize(new Dimension(10, 10));
 						photo.setBackground(Color.LIGHT_GRAY);
 						photo.setIcon(new ImageIcon(newimg));
+						photo.setBounds(230, 15, 120, 120);
+						
+						test.add(photo);
+						
 						match1.setBackground(Color.LIGHT_GRAY);
 						match1.setMaximumSize(new Dimension(640, 150));
 						match1.setMinimumSize(new Dimension(639, 149));
@@ -433,15 +438,17 @@ public class HomeScreen extends JFrame {
 						if (found!=null && !(found.isCheckOut())) {
 							System.out.println("Here");
 							JButton checkout = new JButton("Checkout");
-							match1.add(checkout);
+							checkout.setBounds(400,50, 100,50);
+							test.add(checkout);
 							checkout.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
 									System.out.println(e.getActionCommand());
 									JPanel checkOutPage = new JPanel();
 									checkOutPage.setSize(new Dimension(50, 50));
 									checkOutPage.setVisible(true);
+									
 									String input = JOptionPane.showInputDialog(contentPane,
-											books.getBooks()[new Integer(e.getActionCommand())].toString()
+											found.toString()
 													+ "\nEnter Member ID");
 									Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
 									if (checkerOut != null) {
@@ -478,12 +485,11 @@ public class HomeScreen extends JFrame {
 							.getImage();
 					Image newimg = img1.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
 					JLabel photo = new JLabel();
+					photo.setBounds(230, 15, 120, 120);
 					
-					photo.setMaximumSize(new Dimension(50, 50));
-					photo.setMinimumSize(new Dimension(10, 10));
 					photo.setBackground(Color.blue);
 					photo.setIcon(new ImageIcon(newimg));
-					match1.setBackground(Color.MAGENTA);
+					match1.setBackground(Color.lightGray);
 					match1.setMaximumSize(new Dimension(640, 150));
 					match1.setMinimumSize(new Dimension(639, 149));
 
@@ -497,7 +503,8 @@ public class HomeScreen extends JFrame {
 					if (found!=null && !(found.isCheckOut())) {
 						System.out.println("Here");
 						JButton checkout = new JButton("Checkout");
-						match1.add(checkout);
+						checkout.setBounds(400,50, 100,50);
+						test.add(checkout);
 						checkout.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								System.out.println(e.getActionCommand());
@@ -505,7 +512,7 @@ public class HomeScreen extends JFrame {
 								checkOutPage.setSize(new Dimension(50, 50));
 								checkOutPage.setVisible(true);
 								String input = JOptionPane.showInputDialog(contentPane,
-										books.getBooks()[new Integer(e.getActionCommand())].toString()
+										found.toString()
 												+ "\nEnter Member ID");
 								Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
 								if (checkerOut != null) {
@@ -557,6 +564,7 @@ public class HomeScreen extends JFrame {
 					lostBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					lostBtn.setBounds(440, 50, 192, 32);
 					lostBtn.setActionCommand(Integer.toString(person.getId()));
+					if (person.getCheckedOutBooks().getNumCheckedOut()!=0)
 					match3.add(lostBtn);
 					JButton payBtn = new JButton("Pay Fee");
 					payBtn.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -592,6 +600,7 @@ public class HomeScreen extends JFrame {
 							menu.add(comfirmCharge);
 							match3.add(menu);
 							menu.setBounds(156, 15, 50, 100);
+							
 							menu.add(bookToReturn);
 							menu.add(comfirmCharge);
 							menu.setBackground(Color.RED);
@@ -614,6 +623,7 @@ public class HomeScreen extends JFrame {
 							test.setVisible(true);
 						}
 					});
+					if (person.getCheckedOutBooks().getNumCheckedOut()!=0)
 					match3.add(returnBtn);
 					returnBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {

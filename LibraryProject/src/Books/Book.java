@@ -180,7 +180,7 @@ public class Book implements Cloneable, Serializable, Comparable {
 	 * @Throws: none
 	 */
 	public String toString() {
-		return "\nTitle:" + title + "\nAuthor:"+ author+"\nAvailable: " + checkOut ;
+		return "\nTitle:" + title + "\nAuthor:"+ author+"\nAvailable: " + !checkOut ;
 	}
 	/**
 	 * @Specifications: compareTo method that compare two objects
