@@ -175,7 +175,7 @@ public class HomeScreen extends JFrame {
 
 		test = new JPanel();
 		// test.setSize(new Dimension(700, 700));
-
+		test.setBackground(Color.black);
 		JScrollPane scrollPane = new JScrollPane(test, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
@@ -193,13 +193,13 @@ public class HomeScreen extends JFrame {
 					JPanel bookContainer = new JPanel();
 					bookContainer.setMaximumSize(new Dimension(640, 150));
 					bookContainer.setMinimumSize(new Dimension(639, 149));
-					bookContainer.setBackground(Color.blue);
+					bookContainer.setBackground(Color.lightGray);
 
 					JTextArea match = new JTextArea(books.getBooks()[count].toString());
 					Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
 							.getImage();
 					Image newimg = img1.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-					match.setBackground(Color.pink);
+					match.setBackground(Color.LIGHT_GRAY);
 					match.setMaximumSize(new Dimension(640, 150));
 					match.setMinimumSize(new Dimension(639, 149));
 
@@ -207,10 +207,10 @@ public class HomeScreen extends JFrame {
 					photo.setMaximumSize(new Dimension(50, 50));
 					photo.setMinimumSize(new Dimension(10, 10));
 					photo.setIcon(new ImageIcon(newimg));
-					photo.setBackground(Color.blue);
+					photo.setBackground(Color.lightGray);
 
 					JPanel breaker = new JPanel();
-					breaker.setBackground(Color.WHITE);
+					breaker.setBackground(Color.BLACK);
 					breaker.setMaximumSize(new Dimension(640, 10));
 					bookContainer.add(match);
 					bookContainer.add(photo);
@@ -224,10 +224,17 @@ public class HomeScreen extends JFrame {
 								JPanel checkOutPage = new JPanel();
 								checkOutPage.setSize(new Dimension(50, 50));
 								checkOutPage.setVisible(true);
-								String input = JOptionPane.showInputDialog(contentPane,
+								String input="0";
+								Member checkerOut=null;
+								try {
+								input = JOptionPane.showInputDialog(contentPane,
 										books.getBooks()[new Integer(e.getActionCommand())].toString()
 												+ "\nEnter Member ID");
-								Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
+								checkerOut = (Member) members.searchByMemberId(new Integer(input));
+								}catch (Exception ex) {
+									input="0";
+								}
+								
 								if (checkerOut != null) {
 
 									checkerOut.checkOut(books.getBooks()[new Integer(e.getActionCommand())]);
@@ -259,12 +266,13 @@ public class HomeScreen extends JFrame {
 				for (int count = 0; count < members.getManyMembers(); count++) {
 					Member person = (Member) members.getPeople()[count];
 					JTextArea match = new JTextArea(person.toString());
-					match.setBackground(Color.pink);
+					match.setEditable(false);
+					match.setBackground(Color.lightGray);
 
 					match.setMinimumSize(new Dimension(639, 149));
 
 					JPanel breaker = new JPanel();
-					breaker.setBackground(Color.WHITE);
+					breaker.setBackground(Color.BLACK);
 					breaker.setMaximumSize(new Dimension(640, 10));
 
 					JButton returnBtn = new JButton("Return");
@@ -297,7 +305,7 @@ public class HomeScreen extends JFrame {
 							menu.setBounds(156, 15, 50, 100);
 							menu.add(bookToReturn);
 							menu.add(comfirmReturn);
-							menu.setBackground(Color.YELLOW);
+							menu.setBackground(Color.WHITE);
 							menu.setBounds(156, 15, 269, 105);
 							match.add(menu);
 							match.setVisible(true);
@@ -345,7 +353,7 @@ public class HomeScreen extends JFrame {
 							menu.setBounds(156, 15, 50, 100);
 							menu.add(bookToReturn);
 							menu.add(comfirmCharge);
-							menu.setBackground(Color.YELLOW);
+							menu.setBackground(Color.RED);
 							menu.setBounds(156, 15, 269, 105);
 							match.setVisible(true);
 							comfirmCharge.addActionListener(new ActionListener() {
@@ -390,48 +398,135 @@ public class HomeScreen extends JFrame {
 				loadPeopleFile();
 				Book found;
 				switch (s) {
-				case "Author":
+				case "Author":{
 					Sorting.bookMergeSortByAuthor(books.getBooks(), 0, books.getManyBooks());
-
+					
 					found = books.SearchByTitle(search_textField.getText());
-					for (int count = 0; count < books.getManyBooks(); count++) {
-						JTextArea match1 = new JTextArea(books.getBooks()[count].toString());
-						Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
+					JPanel breaker = new JPanel();
+					breaker.setBackground(Color.BLACK);
+					breaker.setMaximumSize(new Dimension(640, 10));
+					//for (int count = 0; count < books.getManyBooks(); count++) {
+						JTextArea match1 = new JTextArea("");
+						try {
+						match1 = new JTextArea(found.toString());
+						
+						Image img1 = new ImageIcon(this.getClass().getResource(found.getPicture()))
 								.getImage();
-
-						match1.setBackground(Color.MAGENTA);
+						Image newimg = img1.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+						JLabel photo = new JLabel();
+						
+						photo.setMaximumSize(new Dimension(50, 50));
+						photo.setMinimumSize(new Dimension(10, 10));
+						photo.setBackground(Color.LIGHT_GRAY);
+						photo.setIcon(new ImageIcon(newimg));
+						match1.setBackground(Color.LIGHT_GRAY);
 						match1.setMaximumSize(new Dimension(640, 150));
 						match1.setMinimumSize(new Dimension(639, 149));
 
-						JPanel breaker = new JPanel();
-						breaker.setBackground(Color.WHITE);
-						breaker.setMaximumSize(new Dimension(640, 10));
-
+						
+						match1.add(photo);
 						test.add(match1);
-						test.add(breaker);
-					}
+						}
+						catch (Exception e) {
+							
+						}
+						if (found!=null && !(found.isCheckOut())) {
+							System.out.println("Here");
+							JButton checkout = new JButton("Checkout");
+							match1.add(checkout);
+							checkout.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									System.out.println(e.getActionCommand());
+									JPanel checkOutPage = new JPanel();
+									checkOutPage.setSize(new Dimension(50, 50));
+									checkOutPage.setVisible(true);
+									String input = JOptionPane.showInputDialog(contentPane,
+											books.getBooks()[new Integer(e.getActionCommand())].toString()
+													+ "\nEnter Member ID");
+									Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
+									if (checkerOut != null) {
 
+										checkerOut.checkOut(found);
+
+										System.out.println(checkerOut);
+										savePeopleFile();
+
+									}
+									saveBookFile();
+								}
+
+							});
+							match1.add(checkout);
+						}
+						test.add(breaker);
+						test.setVisible(true);
+					//}
+
+				}
 					break;
-				case "Title":
+				case "Title":{
 					Sorting.bookMergeSortByTitle(books.getBooks(), 0, books.getManyBooks());
 					found = books.SearchByTitle(search_textField.getText());
-					System.out.println(found);
-					for (int count = 0; count < books.getManyBooks(); count++) {
-						JTextArea match1 = new JTextArea(books.getBooks()[count].toString());
-						Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
-								.getImage();
-						match1.setBackground(Color.MAGENTA);
-						match1.setMaximumSize(new Dimension(640, 150));
-						match1.setMinimumSize(new Dimension(639, 149));
+					JPanel breaker = new JPanel();
+					breaker.setBackground(Color.BLACK);
+					breaker.setMaximumSize(new Dimension(640, 10));
+					JTextArea match1 = new JTextArea("");
+					try {
+					match1 = new JTextArea(found.toString());
+					
+					Image img1 = new ImageIcon(this.getClass().getResource(found.getPicture()))
+							.getImage();
+					Image newimg = img1.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+					JLabel photo = new JLabel();
+					
+					photo.setMaximumSize(new Dimension(50, 50));
+					photo.setMinimumSize(new Dimension(10, 10));
+					photo.setBackground(Color.blue);
+					photo.setIcon(new ImageIcon(newimg));
+					match1.setBackground(Color.MAGENTA);
+					match1.setMaximumSize(new Dimension(640, 150));
+					match1.setMinimumSize(new Dimension(639, 149));
 
-						JPanel breaker1 = new JPanel();
-						breaker1.setBackground(Color.WHITE);
-						breaker1.setMaximumSize(new Dimension(640, 10));
-
-						test.add(match1);
-						test.add(breaker1);
+					
+					match1.add(photo);
+					test.add(match1);
 					}
+					catch (Exception e) {
+						
+					}
+					if (found!=null && !(found.isCheckOut())) {
+						System.out.println("Here");
+						JButton checkout = new JButton("Checkout");
+						match1.add(checkout);
+						checkout.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								System.out.println(e.getActionCommand());
+								JPanel checkOutPage = new JPanel();
+								checkOutPage.setSize(new Dimension(50, 50));
+								checkOutPage.setVisible(true);
+								String input = JOptionPane.showInputDialog(contentPane,
+										books.getBooks()[new Integer(e.getActionCommand())].toString()
+												+ "\nEnter Member ID");
+								Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
+								if (checkerOut != null) {
 
+									checkerOut.checkOut(found);
+
+									System.out.println(checkerOut);
+									savePeopleFile();
+
+								}
+								saveBookFile();
+							}
+
+						});
+						match1.add(checkout);
+					}
+					test.add(breaker);
+					test.setVisible(true);
+				//}
+
+			}		
 					break;
 				case "Member Id":
 					int myint = 0;
@@ -444,12 +539,12 @@ public class HomeScreen extends JFrame {
 					Member person = (Member) members.searchByMemberId(myint);
 					JTextArea match3 = new JTextArea(person.toString());
 					
-					match3.setBackground(Color.MAGENTA);
+					match3.setBackground(Color.lightGray);
 					match3.setMaximumSize(new Dimension(640, 150));
 					match3.setMinimumSize(new Dimension(639, 149));
 
 					JPanel breaker3 = new JPanel();
-					breaker3.setBackground(Color.WHITE);
+					breaker3.setBackground(Color.BLACK);
 					breaker3.setMaximumSize(new Dimension(640, 10));
 
 					test.add(match3);
@@ -499,7 +594,7 @@ public class HomeScreen extends JFrame {
 							menu.setBounds(156, 15, 50, 100);
 							menu.add(bookToReturn);
 							menu.add(comfirmCharge);
-							menu.setBackground(Color.YELLOW);
+							menu.setBackground(Color.RED);
 							menu.setBounds(156, 15, 269, 105);
 							match3.setVisible(true);
 							comfirmCharge.addActionListener(new ActionListener() {
@@ -548,7 +643,7 @@ public class HomeScreen extends JFrame {
 							menu.setBounds(156, 15, 50, 100);
 							menu.add(bookToReturn);
 							menu.add(comfirmReturn);
-							menu.setBackground(Color.YELLOW);
+							menu.setBackground(Color.WHITE);
 							menu.setBounds(156, 15, 269, 105);
 							match3.add(menu);
 							match3.setVisible(true);
