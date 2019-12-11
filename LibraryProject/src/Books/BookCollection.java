@@ -99,16 +99,16 @@ public class BookCollection implements Serializable, Comparable {
 		return null;
 	}
 
-	public Book SearchByTitle(Book book) {
+	public Book SearchByTitle(String book) {
 		int first = 0;
 		int last = manyBooks;
 		int middle = (first + last) / 2;
 		while (first != last) {
 			System.out.println("here");
-			if (book.getTitle().equals(books[middle].getTitle())) {
-				return book;
+			if (book.equals(books[middle].getTitle())) {
+				return books[middle];
 			}
-			if (book.getTitle().compareTo(books[middle].getTitle()) > 0) {
+			if (book.compareTo(books[middle].getTitle()) > 0) {
 				first = middle+1;
 				middle = (first + last) / 2;
 			} else {

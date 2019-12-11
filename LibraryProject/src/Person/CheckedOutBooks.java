@@ -26,6 +26,7 @@ public class CheckedOutBooks implements Serializable{
 	protected void add(Book book) {
 		if (head==null) {
 			head = new BookNode(book);
+			head.setLink(null);
 		}
 		else {
 			BookNode newBook = new BookNode(book);

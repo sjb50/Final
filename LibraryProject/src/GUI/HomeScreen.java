@@ -40,7 +40,7 @@ import helpers.*;
 
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.print.Book;
+//import java.awt.print.Book;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -102,14 +102,6 @@ public class HomeScreen extends JFrame {
 		lblNewLabel.setBounds(10, -20, 325, 121);
 		contentPane.add(lblNewLabel);
 
-		String[] sortMethod = { "Author", "Title" };
-		JComboBox sort_comboBox = new JComboBox(sortMethod);
-		sort_comboBox.setFont(new Font("Arial", Font.BOLD, 15));
-		sort_comboBox.setForeground(Color.BLACK);
-		sort_comboBox.setBackground(Color.BLACK);
-		sort_comboBox.setBounds(132, 169, 105, 32);
-		contentPane.add(sort_comboBox);
-
 		search_textField = new JTextField();
 		search_textField.setBounds(237, 169, 293, 32);
 		contentPane.add(search_textField);
@@ -118,6 +110,7 @@ public class HomeScreen extends JFrame {
 		JButton logout_btn = new JButton("");
 		logout_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
 			}
 		});
 		logout_btn.setBackground(Color.WHITE);
@@ -166,13 +159,21 @@ public class HomeScreen extends JFrame {
 		memberList_btn.setBounds(542, 11, 179, 33);
 		panel.add(memberList_btn);
 
-		JButton btnNewButton = new JButton("Search ");
-		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		btnNewButton.setBounds(540, 169, 91, 32);
-		contentPane.add(btnNewButton);
+		JButton btnSearch = new JButton("Search ");
+		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		btnSearch.setBounds(540, 169, 91, 32);
+		contentPane.add(btnSearch);
+
+		String[] sortMethod = { "Author", "Title", "Member Id" };
+		JComboBox sort_comboBox = new JComboBox(sortMethod);
+		sort_comboBox.setFont(new Font("Arial", Font.BOLD, 15));
+		sort_comboBox.setForeground(Color.BLACK);
+		sort_comboBox.setBackground(Color.WHITE);
+		sort_comboBox.setBounds(132, 169, 105, 32);
+		contentPane.add(sort_comboBox);
 
 		test = new JPanel();
-		//test.setSize(new Dimension(700, 700));
+		// test.setSize(new Dimension(700, 700));
 
 		JScrollPane scrollPane = new JScrollPane(test, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -180,11 +181,11 @@ public class HomeScreen extends JFrame {
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBounds(36, 215, 669, 405);
 		contentPane.add(scrollPane);
-	
 
 		bookCollection_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadBookFile();
+				loadPeopleFile();
 				test.removeAll();
 				test.setVisible(false);
 				for (int count = 0; count < books.getManyBooks(); count++) {
@@ -228,6 +229,7 @@ public class HomeScreen extends JFrame {
 								Member checkerOut = (Member) members.searchByMemberId(new Integer(input));
 								if (checkerOut != null) {
 									checkerOut.checkOut(books.getBooks()[new Integer(e.getActionCommand())]);
+									System.out.println(checkerOut);
 									saveBookFile();
 									savePeopleFile();
 								}
@@ -238,7 +240,7 @@ public class HomeScreen extends JFrame {
 					}
 					test.add(bookContainer);
 					test.add(breaker);
-					
+
 				}
 				test.setVisible(true);
 			}
@@ -266,18 +268,102 @@ public class HomeScreen extends JFrame {
 				test.setVisible(true);
 			}
 		});
+
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				test.removeAll();
+				test.setVisible(false);
+				if (search_textField.equals(null)) {
+					System.out.println(" please select an option:");
+				}
+				String s = (String) sort_comboBox.getSelectedItem();
+				loadBookFile();
+				loadPeopleFile();
+				Book found;
+				switch (s) {
+
+				case "Author":
+					Sorting.bookMergeSortByAuthor(books.getBooks(), 0, books.getManyBooks());
+
+					found = books.SearchByTitle(search_textField.getText());
+					for (int count = 0; count < books.getManyBooks(); count++) {
+						JTextArea match1 = new JTextArea(books.getBooks()[count].toString());
+						Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
+								.getImage();
+
+						match1.setBackground(Color.MAGENTA);
+						match1.setMaximumSize(new Dimension(640, 150));
+						match1.setMinimumSize(new Dimension(639, 149));
+
+						JPanel breaker = new JPanel();
+						breaker.setBackground(Color.WHITE);
+						breaker.setMaximumSize(new Dimension(640, 10));
+
+						test.add(match1);
+						test.add(breaker);
+					}
+
+					break;
+				case "Title":
+					Sorting.bookMergeSortByTitle(books.getBooks(), 0, books.getManyBooks());
+					found = books.SearchByTitle(search_textField.getText());
+					System.out.println(found);
+					for (int count = 0; count < books.getManyBooks(); count++) {
+						JTextArea match1 = new JTextArea(books.getBooks()[count].toString());
+						Image img1 = new ImageIcon(this.getClass().getResource(books.getBooks()[count].getPicture()))
+								.getImage();
+						match1.setBackground(Color.MAGENTA);
+						match1.setMaximumSize(new Dimension(640, 150));
+						match1.setMinimumSize(new Dimension(639, 149));
+
+						JPanel breaker1 = new JPanel();
+						breaker1.setBackground(Color.WHITE);
+						breaker1.setMaximumSize(new Dimension(640, 10));
+
+						test.add(match1);
+						test.add(breaker1);
+					}
+
+					break;
+				case "Member Id":
+					int myint = 0;
+					// Sorting.memberSortByMemberId(member.getPeople(),0,member.getManyMembers());
+					try {
+						myint = Integer.parseInt(search_textField.getText());
+						System.out.println(myint);
+
+					} catch (Exception e) {
+						System.err.println(e);
+					}
+					Member person = (Member) members.searchByMemberId(myint);
+					JTextArea match3 = new JTextArea(person.toString());
+					match3.setBackground(Color.MAGENTA);
+					match3.setMaximumSize(new Dimension(640, 150));
+					match3.setMinimumSize(new Dimension(639, 149));
+
+					JPanel breaker3 = new JPanel();
+					breaker3.setBackground(Color.WHITE);
+					breaker3.setMaximumSize(new Dimension(640, 10));
+
+					test.add(match3);
+					test.add(breaker3);
+				}
+				test.setVisible(true);
+			}
+
+		});
 	}
 
 	/**
-	 *@Specifications:
-	 *@Param:
-	 *@Precondition:
-	 *@Postcondition:
-	 *@Throws:
+	 * @Specifications:
+	 * @Param:
+	 * @Precondition:
+	 * @Postcondition:
+	 * @Throws:
 	 */
 	private void loadMemberFile() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
